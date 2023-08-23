@@ -1,5 +1,5 @@
 import { ICollideable, IRenderable } from "../Interfaces/Interfaces.js";
-import { MapEditor } from "../Scripts/MapEditor.js";
+import { MapEditor } from "./MapEditor.js";
 import { CharacterBase } from "./CharaterBase.js";
 import { GameObject } from "./GameObject.js";
 import { Vector2 } from "./Structs.js";

@@ -19,8 +19,8 @@ window.addEventListener('load', () => {
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
 
-    game.Add(new Springtrap(new Vector2(550, 550), "Springtrap", game));
-    game.Add(new Player(new Vector2(50, 50), "Player", game));
+    // game.Add(new Springtrap(new Vector2(550, 550), "Springtrap", game));
+    // game.Add(new Player(new Vector2(50, 50), "Player", game));
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode == ControllerMode.Mouse) {

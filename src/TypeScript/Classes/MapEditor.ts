@@ -1,9 +1,9 @@
-import { BasicRendering } from "../Classes/BasicRendering.js";
-import { IRenderable } from "../Interfaces/Interfaces";
+import { BasicRendering } from "./BasicRendering.js";
+import { IRenderable } from "../Interfaces/Interfaces.js";
 import { LevelSize, Sprites } from "../Enums/Enums.js";
-import { Sprite, Vector2 } from "../Classes/Structs.js";
-import { SpriteChanger } from "../Enums/Enums";
-import { Game } from "../Classes/Game.js";
+import { Sprite, Vector2 } from "./Structs.js";
+import { SpriteChanger } from "../Enums/Enums.js";
+import { Game } from "./Game.js";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
