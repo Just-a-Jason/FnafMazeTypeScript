@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {box-sizing: border-box;}
+
+body {
+    background: #000;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-canvas {
+    /* background: url('../Images/Assets/pngbg.webp'); */
+    background: #000;
+    box-shadow: 10px 10px 5px #111;
+    border:solid 5px #350000;
+    /* border-radius: 10px; */
+}
