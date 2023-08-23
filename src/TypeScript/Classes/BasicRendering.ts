@@ -2,7 +2,7 @@ import { Sprite, Vector2 } from "./Structs.js";
 
 export abstract class BasicRendering {
     public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite, targetWidth?:number,targetHeight?:number):void;
-    public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite):void 
+    public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite):void; 
     public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite, targetWidth?:number, targetHeight?:number):void  {
         const size: Vector2 = new Vector2(sprite.width, sprite.height);
         if (targetWidth) size.x = targetWidth;
