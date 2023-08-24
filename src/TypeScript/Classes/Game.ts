@@ -1,17 +1,15 @@
 import { ICollideable, IRenderable } from "../Interfaces/Interfaces.js";
-import { MapEditor } from "./MapEditor.js";
 import { CharacterBase } from "./CharaterBase.js";
-import { GameObject } from "./GameObject.js";
-import { Vector2 } from "./Structs.js";
-import { Mouse } from "./Mouse.js";
 import { LevelSize } from "../Enums/Enums.js";
+import { GameObject } from "./GameObject.js";
+import { MapEditor } from "./MapEditor.js";
+import { Vector2 } from "./Structs.js";
 
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
     private renderable: IRenderable[] = [];
     public UI: IRenderable | null = null;
-    public mouse: Mouse = new Mouse();
     public editMode:boolean = true;
     public debug:boolean = true;
     public DeltaTime:number = 1;
@@ -26,7 +24,6 @@ export class Game {
     public Render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.mapEditor.Render(ctx);
-        this.mouse.Render(ctx);       
         this.ProcessAI();
 
         this.renderable.forEach((obj:IRenderable) => {

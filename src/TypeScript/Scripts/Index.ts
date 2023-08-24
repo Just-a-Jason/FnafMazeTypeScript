@@ -1,6 +1,6 @@
 import { IMovable } from "../Interfaces/Interfaces.js";
 import { Springtrap} from "../Classes/Characters.js";
-import { ControllerMode, LevelSize, SpriteChanger } from "../Enums/Enums.js";
+import { ControllerMode, SpriteChanger } from "../Enums/Enums.js";
 import { Vector2 } from "../Classes/Structs.js";
 import { Player } from "../Classes/Player.js";
 import { Game } from "../Classes/Game.js";
@@ -23,12 +23,33 @@ window.addEventListener('load', () => {
     // game.Add(new Player(new Vector2(50, 50), "Player", game));
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
-        if (mouseControllMode == ControllerMode.Mouse) {
-            game.mouse.position = new Vector2(e.offsetX, e.offsetY);
+        if (mouseControllMode === ControllerMode.Mouse) {
+            const gridCellSize = game.mapEditor.levelSize * 0.5;
+            const mouseX = Clamp(e.offsetX, gridCellSize, game.canvasWidth);
+            const mouseY = Clamp(e.offsetY, gridCellSize, game.canvasHeight);
+
+            let xpos = Math.ceil(mouseX / gridCellSize); 
+            let ypos = Math.ceil(mouseY / gridCellSize); 
+            if (xpos %2 === 0) xpos--;
+            if (ypos %2 === 0) ypos--;
+            
+            const gridPosition:Vector2 = new Vector2(Math.round(xpos * gridCellSize), Math.round(ypos * gridCellSize));
+            game.mapEditor.cursorPosition = gridPosition;
         }
+    });
+    
+    canvas.addEventListener('contextmenu', (e: MouseEvent) => {
+        e.preventDefault(); // Prevent the default context menu from appearing
     });
 
     canvas.addEventListener('mousedown', (e:MouseEvent) => {
+        if (!game.editMode) return;
+
+        const mapEditor = game.mapEditor;
+        mapEditor.CalculateGridIndex();
+
+        if (e.button === 0)  mapEditor.PlaceSprite();
+        if (e.button === 2)  mapEditor.RemoveSprite();
     });
 
     function GameLoop():void {
@@ -42,13 +63,14 @@ window.addEventListener('load', () => {
     window.addEventListener('gamepadconnected', (e:GamepadEvent) => {
         detectControllerLoop = setInterval(DetectControllerPress, 100);
         console.info(`Gamepad connected. ID(${e.gamepad.id})`);
+        mouseControllMode = ControllerMode.Controller;
     });
     
     window.addEventListener('gamepaddisconnected', (e:GamepadEvent) => {
         clearInterval(detectControllerLoop!);
         detectControllerLoop = null;
-
         console.info(`Gamepad disconnected. ID(${e.gamepad.id})`);
+        mouseControllMode = ControllerMode.Mouse;
     });
 
     function DetectControllerPress() {
@@ -81,7 +103,7 @@ window.addEventListener('load', () => {
                 if (moveVector.x !== 0 || moveVector.y !== 0) mapEditor.CalculateGridIndex(); 
                 
                 if (gamepad.buttons[0].pressed) mapEditor.PlaceSprite(); // X button (PS4)
-                if (gamepad.buttons[1].pressed) mapEditor.RemoveSprite(); // Circle button (PS4)
+                if (gamepad.buttons[1].pressed && !game.debug) mapEditor.RemoveSprite(); // Circle button (PS4)
                 
                 
                 if (gamepad.buttons[4].pressed) mapEditor.ChangeSprite(SpriteChanger.Previous); // L1 button (PS4)
