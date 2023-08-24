@@ -50,7 +50,7 @@ export class Player extends GameObject {
         }
     }
 
-    public Render(ctx: CanvasRenderingContext2D): void {
+    public override Render(ctx: CanvasRenderingContext2D): void {
         super.Render(ctx);
         if (this.game.debug)BasicRendering.DrawCircle(ctx, this.position, this.fov, '#ff0',0.2);
     }
