@@ -2,9 +2,9 @@
 
 I want to show you my game called: "The fnaf maze" it's build using:
 
-> Html
-> CSS
-> TypeScript
+- Html
+- CSS
+- TypeScript
 
 ## Here is some photos of this game:
 
