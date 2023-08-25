@@ -4,8 +4,10 @@ import { LevelSize } from "../Enums/Enums.js";
 import { GameObject } from "./GameObject.js";
 import { MapEditor } from "./MapEditor.js";
 import { Vector2 } from "./Structs.js";
+import { mouse } from "./mouse.js";
 
 export class Game {
+    public mouse: mouse = new mouse();
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
     private renderable: IRenderable[] = [];
@@ -30,6 +32,7 @@ export class Game {
             obj.Render(ctx);
         });
         this.UI?.Render(ctx);
+        this.mouse.Render(ctx);
     }
 
     private ProcessAI():void {

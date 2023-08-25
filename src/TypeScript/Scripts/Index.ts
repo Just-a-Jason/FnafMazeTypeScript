@@ -23,6 +23,7 @@ window.addEventListener('load', () => {
     // game.Add(new Player(new Vector2(50, 50), "Player", game));
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
+        game.mouse.position = new Vector2(e.offsetX,e.offsetY);
         if (mouseControllMode === ControllerMode.Mouse) {
             const gridCellSize = game.mapEditor.levelSize * 0.5;
             const mouseX = Clamp(e.offsetX, gridCellSize, game.canvasWidth);
