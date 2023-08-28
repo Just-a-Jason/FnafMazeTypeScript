@@ -1,8 +1,5 @@
-import { IMovable } from "../Interfaces/Interfaces.js";
-import { Springtrap} from "../Classes/Characters.js";
 import { ControllerMode, SpriteChanger } from "../Enums/Enums.js";
 import { Vector2 } from "../Classes/Structs.js";
-import { Player } from "../Classes/Player.js";
 import { Game } from "../Classes/Game.js";
 import { UI } from "../Classes/UI.js";
 import { Clamp } from "./Utils.js";
@@ -23,7 +20,6 @@ window.addEventListener('load', () => {
     // game.Add(new Player(new Vector2(50, 50), "Player", game));
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
-        game.mouse.position = new Vector2(e.offsetX,e.offsetY);
         if (mouseControllMode === ControllerMode.Mouse) {
             const gridCellSize = game.mapEditor.levelSize * 0.5;
             const mouseX = Clamp(e.offsetX, gridCellSize, game.canvasWidth);
@@ -73,6 +69,27 @@ window.addEventListener('load', () => {
         console.info(`Gamepad disconnected. ID(${e.gamepad.id})`);
         mouseControllMode = ControllerMode.Mouse;
     });
+
+        // Camera Movement Handler
+    // window.addEventListener('keypress', (e:KeyboardEvent) => {
+    //     const camera:Camera = game.mainCamera;
+
+    //     if (e.key === 'd') camera.position.x += game.DeltaTime * camera.speed * Directions.Right;
+    //     if (e.key === 'a') camera.position.x += game.DeltaTime * camera.speed * Directions.Left;
+    //     if (e.key === 'w') camera.position.y += game.DeltaTime * camera.speed * Directions.Up;
+    //     if (e.key === 's') camera.position.y += game.DeltaTime * camera.speed * Directions.Down;
+        
+    //     // camera.position.y += game.DeltaTime * camera.speed;
+    //     console.log(camera.position);
+    // });
+
+        //  Camera Zoom Scroll Handler
+    // canvas.addEventListener('wheel', (e:WheelEvent) => {
+    //     const zoom = e.deltaY*-1*game.DeltaTime;
+    //     const camera:Camera = game.mainCamera;
+    //     camera.cameraZoomAmount = Clamp(camera.cameraZoomAmount+(zoom/10), 0.5, camera.cameraZoomAmountMax);
+    //     console.log(camera.cameraZoomAmount);   
+    // });
 
     function DetectControllerPress() {
             const gamepad = navigator.getGamepads()[0];

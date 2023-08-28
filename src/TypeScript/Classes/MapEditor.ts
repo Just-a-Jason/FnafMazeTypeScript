@@ -81,8 +81,7 @@ export class MapEditor implements IRenderable {
                 if (this.grid[idx] !== null) {
                     ctx.save();
                     ctx.filter = 'contrast(1.3)';
-                    BasicRendering.DrawSprite(ctx, offset, this.grid[idx]!, this.levelSize, this.levelSize);
-
+                    BasicRendering.DrawSprite(ctx, offset, this.grid[idx]!, this.levelSize*this.game.mainCamera.cameraZoomAmount, this.levelSize*this.game.mainCamera.cameraZoomAmount);
                     ctx.restore();
                 }
                 offset.x += this.levelSize;
