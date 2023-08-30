@@ -1,12 +1,14 @@
 import { IRenderable } from "../Interfaces/Interfaces";
 import { BasicRendering } from "./BasicRendering.js";
-import { Sprites } from "../Enums/Enums.js";
 import { Vector2 } from "./Structs.js";
 import { Player } from "./Player.js";
 import { Game } from "./Game.js";
+import { Clamp } from "../Scripts/Utils.js";
+import { FillAligment } from "../Enums/Enums";
 
 export class UI implements IRenderable { 
     private player: Player | null = null;
+    private currentValue = 0;
 
     public constructor(private game:Game) {}
 
@@ -26,6 +28,7 @@ export class UI implements IRenderable {
             BasicRendering.DrawRectangle(ctx, backgroundPosition, backgroundSize.x, backgroundSize.y,'#000');
             BasicRendering.DrawText(ctx,`FPS: ${this.game.fps}`,textPosition, 80,'#fff', `${fontSize}px 'Press Start 2P', cursive`);
         }
+        this.currentValue = Clamp(this.currentValue+this.game.DeltaTime*100, 0, 200);
     }
 
     private DrawPlayerUI(ctx:CanvasRenderingContext2D) {
