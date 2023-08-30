@@ -1,3 +1,4 @@
+import { FillAligment } from "../Enums/Enums.js";
 import { Sprite, Vector2 } from "./Structs.js";
 
 export abstract class BasicRendering {
@@ -37,4 +38,53 @@ export abstract class BasicRendering {
         ctx.fillText(text, position.x, position.y, maxWidth);
         ctx.restore();
     }
+
+    public static DrawProgressBar(ctx:CanvasRenderingContext2D, position:Vector2, maximumValue:number, currentValue:number, width:number, height:number, foregroundColor?:string, backgroundColor?:string):void;
+    public static DrawProgressBar(ctx:CanvasRenderingContext2D, position:Vector2, maximumValue:number, currentValue:number, width:number, height:number, foregroundColor:string, backgroundColor:string, padding:number, barAligment:FillAligment):void;
+    public static DrawProgressBar(ctx:CanvasRenderingContext2D, position:Vector2, maximumValue:number, currentValue:number, width:number, height:number, foregroundColor:string, backgroundColor:string, padding:number):void;
+    public static DrawProgressBar(ctx:CanvasRenderingContext2D, position:Vector2, maximumValue:number, currentValue:number, width:number, height:number, foregroundColor:string = '#0f0', backgroundColor:string = '#000', padding:number = 0, barAligment:FillAligment=FillAligment.FromLeftToRight):void {
+        /* For Kuguar: 
+            Drawing progress bar math rules:
+            1. (Fill percent) Divide currentValue by maxValue 
+            1a. Example: 
+                const maximumValue:number = 200;
+                const currentValue:number = 100;
+                const fillAmount = currentValue / maximumValue; (0.5)
+            
+            2. Then you can multiply it by full width to get bar fill amount
+            2a. Example:
+                const barFullWidth: 200; (200px)
+                const barFillAmount = fillAmount*barFullWidth; (100px)
+        */  
+        let barFillAmount:number = (currentValue / maximumValue)*width;
+        
+
+        ctx.save();
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(position.x,position.y, width, height);
+
+        ctx.fillStyle = foregroundColor;
+        
+        // Inner progress bar padding rules
+        if (padding > 0) {
+            height -= padding;
+            position.y += padding*0.5;
+            position.x += padding*0.5;
+            barFillAmount = (currentValue / maximumValue)*(width-padding);
+        }
+        
+        switch (barAligment) {
+            case FillAligment.FromRightToLeft:
+                /* 
+                   We are increasing bar fill amount from right to left 
+                   so we have to move it by full of its width to the right.
+                */
+                barFillAmount = -barFillAmount;
+                position.x += width;
+                position.x -= padding;
+            break;
+        }
+        ctx.fillRect(position.x, position.y,barFillAmount,height);
+        ctx.restore();
+    }    
 }
