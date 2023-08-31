@@ -40,7 +40,7 @@ export interface IWander {
 }
 
 export interface IChaser {
-    target?: GameObject | null;
+    target?:Nullable<GameObject>;
     maxEscapeZone: number;
     chaseSpeed?: number;
     isChaseing:boolean;

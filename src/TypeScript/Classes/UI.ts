@@ -1,13 +1,12 @@
 import { IRenderable } from "../Interfaces/Interfaces";
 import { BasicRendering } from "./BasicRendering.js";
+import { Clamp } from "../Scripts/Utils.js";
 import { Vector2 } from "./Structs.js";
 import { Player } from "./Player.js";
 import { Game } from "./Game.js";
-import { Clamp } from "../Scripts/Utils.js";
-import { FillAligment } from "../Enums/Enums";
 
 export class UI implements IRenderable { 
-    private player: Player | null = null;
+    private player:Nullable<Player> = null;
     private currentValue = 0;
 
     public constructor(private game:Game) {}

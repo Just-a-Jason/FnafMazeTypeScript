@@ -63,7 +63,7 @@ export class Springtrap extends WanderableCharacter implements IChaser {
     
 
     public maxEscapeZone: number = this.fov * 1.75;
-    public target?: GameObject | null = null;
+    public target?:Nullable<GameObject> = null;
     public chaseSpeed?: number = this.speed * 2;
 
 
