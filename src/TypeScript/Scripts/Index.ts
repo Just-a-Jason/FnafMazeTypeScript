@@ -74,15 +74,15 @@ window.addEventListener('load', () => {
     window.addEventListener('keypress', (e:KeyboardEvent) => {
         if (game.editMode) {
             const mainCamera:Camera = game.mainCamera;
-            const moveSpeed:number = mainCamera.speed * game.DeltaTime;
+            const moveSpeed:number = game.mapEditor.levelSize;
             const cameraPostion:Vector2 = mainCamera.position;
 
             switch(e.key) {
                 case 'w': 
-                    cameraPostion.y += moveSpeed;
+                    cameraPostion.y += -moveSpeed;
                 break;
                 case 's':
-                    cameraPostion.y += -moveSpeed;
+                    cameraPostion.y += moveSpeed;
                 break;
                 case 'a':
                     cameraPostion.x += -moveSpeed;
@@ -92,6 +92,14 @@ window.addEventListener('load', () => {
                 break;
             }
         }
+    });
+
+    // Handle mouse zooming
+    canvas.addEventListener('wheel', (e:WheelEvent) => {
+        // Main camera memory pointer (ref. reference)
+        const mainCamera:Camera = game.mainCamera;
+        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
+        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
     });
 
     function DetectControllerPress() {

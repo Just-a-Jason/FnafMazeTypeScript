@@ -11,7 +11,7 @@ import { Player } from "./Player.js";
 export abstract class WanderableCharacter extends CharacterBase {
     public targetPosition?: Vector2;
 
-    public Wander(): void {
+    public Wander():void {
         if (this.targetPosition) {
             // Logic
             let distance: Vector2 = Vector2.Distance(this.position, this.targetPosition);
@@ -36,7 +36,7 @@ export abstract class WanderableCharacter extends CharacterBase {
             this.targetPosition = new Vector2(RandInt(this.game.canvasWidth), RandInt(this.game.canvasHeight));
         }
     }
-    public override Render(ctx: CanvasRenderingContext2D): void {
+    public override Render(ctx:CanvasRenderingContext2D):void {
         super.Render(ctx);
         if (this.game.debug) {
             if (this.targetPosition) {
@@ -73,7 +73,7 @@ export class Springtrap extends WanderableCharacter implements IChaser {
         super.Main();
     }
 
-    public Chase(): void {
+    public Chase():void {
         this.speed = (!this.isChaseing) ? this.normalSpeed : this.chaseSpeed!;
         if (!this.target) {
             const potencialTargets = this.game.FindObjectsByType<IMovable>(GameObject, this);
@@ -111,7 +111,7 @@ export class Springtrap extends WanderableCharacter implements IChaser {
         }
     }
 
-    public override Render(ctx: CanvasRenderingContext2D): void {
+    public override Render(ctx:CanvasRenderingContext2D):void {
         super.Render(ctx);
         if (this.game.debug) BasicRendering.DrawCircle(ctx,this.position,this.maxEscapeZone,'#ff0',0.2);
     }

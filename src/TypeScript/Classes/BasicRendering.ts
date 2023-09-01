@@ -109,4 +109,17 @@ export abstract class BasicRendering {
         ctx.fillRect(position.x, position.y,barFillAmount,height);
         ctx.restore();
     }    
+
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string,lineWidth:number,width:number,height:number):void;
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string,lineWidth:number,width:number,height:number, alpha?:number):void;
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string='#fff',lineWidth:number,width:number,height:number,alpha?:number):void {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(position.x-(width*0.5),position.y-(height*0.5),width,height);
+        ctx.strokeStyle = lineColor;
+        if (alpha) ctx.globalAlpha = alpha;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        ctx.restore();        
+    }
 }

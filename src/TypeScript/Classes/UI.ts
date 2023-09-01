@@ -11,16 +11,17 @@ export class UI implements IRenderable {
 
     public constructor(private game:Game) {}
 
-    public Render(ctx: CanvasRenderingContext2D): void {
+    public Render(ctx:CanvasRenderingContext2D):void {
         if (!this.player) this.player = this.game.FindObjectByType(Player);
         else this.DrawPlayerUI(ctx);
+        this.game.mainCamera.Render(ctx);
         this.DrawFpsCounter(ctx);
     }
     
     private DrawFpsCounter(ctx:CanvasRenderingContext2D) {
         if (this.game.debug) {
             const backgroundPosition:Vector2 = new Vector2(this.game.canvasWidth);
-            const backgroundSize:Vector2 = new Vector2(200, 100);
+            const backgroundSize:Vector2 = new Vector2(200, 80);
             const fontSize = 20;
 
             const textPosition:Vector2 = new Vector2(this.game.canvasWidth - backgroundSize.x*0.5 + fontSize*0.5, backgroundSize.y *0.5 - fontSize*0.5);

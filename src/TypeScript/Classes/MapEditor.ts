@@ -71,8 +71,18 @@ export class MapEditor implements IRenderable {
         this.selectedSprite = Sprites[key as keyof typeof Sprites];
     }
 
-    public Render (ctx: CanvasRenderingContext2D):void {
+    private RenderBackground(ctx:CanvasRenderingContext2D):void {
+        this.RenderForeground(ctx);
+    }
+
+    private RenderForeground(ctx:CanvasRenderingContext2D):void {
+
+    }
+
+    public Render(ctx:CanvasRenderingContext2D):void {
         const offset:Vector2 = new Vector2(this.levelSize*0.5,this.levelSize * 0.5);
+        offset.x -= this.game.mainCamera.position.x;
+        offset.y -= this.game.mainCamera.position.y;
         let idx = 0;
         
         for (let x = 0; x < this.rowMaxCells; x++) {
@@ -88,6 +98,7 @@ export class MapEditor implements IRenderable {
                 idx++;
             }
             offset.x = this.levelSize * 0.5;
+            offset.x -= this.game.mainCamera.position.x;
             offset.y += this.levelSize;
         }
         ctx.save();

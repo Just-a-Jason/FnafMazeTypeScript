@@ -15,7 +15,7 @@ export interface ICollideable {
 }
 
 export interface IRenderable {
-    Render(ctx: CanvasRenderingContext2D): void;
+    Render(ctx: CanvasRenderingContext2D):void;
 }
 
 export interface IMovable {
@@ -23,7 +23,7 @@ export interface IMovable {
 }
 
 export interface ICharacter {
-    Main(): void;
+    Main():void;
     normalSpeed: number;
     runSpeed: number;
     speed: number;
@@ -31,12 +31,12 @@ export interface ICharacter {
 }
 
 export interface IDebuggable {
-    Log(): void;
+    Log():void;
 }
 
 export interface IWander {
     targetPosition?: Vector2;
-    Wander(): void;
+    Wander():void;
 }
 
 export interface IChaser {
@@ -44,5 +44,5 @@ export interface IChaser {
     maxEscapeZone: number;
     chaseSpeed?: number;
     isChaseing:boolean;
-    Chase(): void;
+    Chase():void;
 }

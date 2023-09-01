@@ -9,7 +9,7 @@ import { Camera } from "./Camera.js";
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
-    public mainCamera:Camera = new Camera(this);
+    public mainCamera:Camera = new Camera(this, 'Main Camera');
     private renderable: IRenderable[] = [];
     public UI:Nullable<IRenderable> = null;
     public editMode:boolean = true;
@@ -97,7 +97,7 @@ export class Game {
         return (found.length > 0) ? found : null;
     }
 
-    private CalculateDeltaTime(): void {
+    private CalculateDeltaTime():void {
         const currentTime:number = performance.now();
         const deltaTime:number = currentTime - this.lastFrameTime;
         this.DeltaTime = deltaTime / 1000;
