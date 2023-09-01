@@ -1,6 +1,29 @@
 import { FillAligment } from "../Enums/Enums.js";
 import { Sprite, Vector2 } from "./Structs.js";
 
+/**
+ * BasicRendering class
+ * @abstract This class cannot be used as instance by using "new" operator.
+ * 
+ * @description
+ * Provides basic rendering functions like:
+ *  - Drawing rectangles, sprites, circles, progress bars.
+ *  - It's basictly a helper class to make life easier.
+ * @example
+ *  import { BasicRendering } from './BasicRendering.js';
+ *  import {Sprites} from './Enums.js';
+ * 
+ *  export class MyGameObject extends GameObject {
+ *      public override Render(ctx:CanvasRenderingContext2D):void {
+ *          // Let's draw something else here
+ *          const spritePosition:Vector2 = new Vector2(100,100); // x: 100, y: 100
+ * 
+ *          BasicRendering.DrawCircle(ctx,spritePosition,100,'#f00',0.5); // Draws a circle.
+ *          BasicRendering.DrawSprite(ctx,spritePosition,Sprites.MySprite,100, 100); // Draws sprite provided.
+ *          BasicRendering.DrawSpriteDrawText(ctx,'My Sprite',spritePosition,100); // Draw text with two optional parameters "font?" and "color?".
+ *      }
+ *  }
+ */
 export abstract class BasicRendering {
     public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite, targetWidth?:number,targetHeight?:number):void;
     public static DrawSprite(ctx:CanvasRenderingContext2D, position:Vector2, sprite:Sprite):void; 
@@ -58,7 +81,6 @@ export abstract class BasicRendering {
         */  
         let barFillAmount:number = (currentValue / maximumValue)*width;
         
-
         ctx.save();
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(position.x,position.y, width, height);
@@ -87,4 +109,17 @@ export abstract class BasicRendering {
         ctx.fillRect(position.x, position.y,barFillAmount,height);
         ctx.restore();
     }    
+
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string,lineWidth:number,width:number,height:number):void;
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string,lineWidth:number,width:number,height:number, alpha?:number):void;
+    public static DrawStrokeRect(ctx:CanvasRenderingContext2D,position:Vector2,lineColor:string='#fff',lineWidth:number,width:number,height:number,alpha?:number):void {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(position.x-(width*0.5),position.y-(height*0.5),width,height);
+        ctx.strokeStyle = lineColor;
+        if (alpha) ctx.globalAlpha = alpha;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        ctx.restore();        
+    }
 }

@@ -19,7 +19,7 @@ export class Player extends GameObject {
     private speed:number = this.normalSpeed;
     private fov:number = 100;
 
-    private vibrationsRunner:number | null = null;
+    private vibrationsRunner:Nullable<number> = null;
     private running:boolean = false;
     private staminaMax: number = 100;
     private stamina:number = this.staminaMax;
@@ -65,7 +65,7 @@ export class Player extends GameObject {
         });
     }
 
-    private Move(gamepad:Gamepad | null):void {
+    private Move(gamepad:Nullable<Gamepad>):void {
         if (gamepad) {
             this.HandleGamePadButtonsInput(gamepad);
 

@@ -1,5 +1,6 @@
 import { ControllerMode, SpriteChanger } from "../Enums/Enums.js";
 import { Vector2 } from "../Classes/Structs.js";
+import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game.js";
 import { UI } from "../Classes/UI.js";
 import { Clamp } from "./Utils.js";
@@ -70,26 +71,36 @@ window.addEventListener('load', () => {
         mouseControllMode = ControllerMode.Mouse;
     });
 
-        // Camera Movement Handler
-    // window.addEventListener('keypress', (e:KeyboardEvent) => {
-    //     const camera:Camera = game.mainCamera;
+    window.addEventListener('keypress', (e:KeyboardEvent) => {
+        if (game.editMode) {
+            const mainCamera:Camera = game.mainCamera;
+            const moveSpeed:number = game.mapEditor.levelSize;
+            const cameraPostion:Vector2 = mainCamera.position;
 
-    //     if (e.key === 'd') camera.position.x += game.DeltaTime * camera.speed * Directions.Right;
-    //     if (e.key === 'a') camera.position.x += game.DeltaTime * camera.speed * Directions.Left;
-    //     if (e.key === 'w') camera.position.y += game.DeltaTime * camera.speed * Directions.Up;
-    //     if (e.key === 's') camera.position.y += game.DeltaTime * camera.speed * Directions.Down;
-        
-    //     // camera.position.y += game.DeltaTime * camera.speed;
-    //     console.log(camera.position);
-    // });
+            switch(e.key) {
+                case 'w': 
+                    cameraPostion.y += -moveSpeed;
+                break;
+                case 's':
+                    cameraPostion.y += moveSpeed;
+                break;
+                case 'a':
+                    cameraPostion.x += -moveSpeed;
+                break;
+                case 'd':
+                    cameraPostion.x += moveSpeed;
+                break;
+            }
+        }
+    });
 
-        //  Camera Zoom Scroll Handler
-    // canvas.addEventListener('wheel', (e:WheelEvent) => {
-    //     const zoom = e.deltaY*-1*game.DeltaTime;
-    //     const camera:Camera = game.mainCamera;
-    //     camera.cameraZoomAmount = Clamp(camera.cameraZoomAmount+(zoom/10), 0.5, camera.cameraZoomAmountMax);
-    //     console.log(camera.cameraZoomAmount);   
-    // });
+    // Handle mouse zooming
+    canvas.addEventListener('wheel', (e:WheelEvent) => {
+        // Main camera memory pointer (ref. reference)
+        const mainCamera:Camera = game.mainCamera;
+        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
+        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
+    });
 
     function DetectControllerPress() {
             const gamepad = navigator.getGamepads()[0];
