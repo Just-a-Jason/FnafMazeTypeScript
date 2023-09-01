@@ -50,7 +50,7 @@ export class Game {
        return [distance < sumOfRadii, distance, sumOfRadii, objectDistance];
     }
 
-    public FindObjectByReferenceName(name:string): null | GameObject {
+    public FindObjectByReferenceName(name:string): Nullable<GameObject> {
             for (let obj of this.renderable) {
                 if ((obj instanceof(GameObject))) {
                     if((obj as GameObject).referenceName === name) {
