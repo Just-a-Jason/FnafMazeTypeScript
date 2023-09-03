@@ -4,6 +4,7 @@ import { Clamp } from "../Scripts/Utils.js";
 import { Vector2 } from "./Structs.js";
 import { Player } from "./Player.js";
 import { Game } from "./Game.js";
+import { FillAligment } from "../Enums/Enums";
 
 export class UI implements IRenderable { 
     private player:Nullable<Player> = null;

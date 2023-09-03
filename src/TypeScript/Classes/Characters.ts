@@ -6,6 +6,7 @@ import { RandInt } from "../Scripts/Utils.js";
 import { GameObject } from "./GameObject.js";
 import { Sprites } from "../Enums/Enums.js";
 import { Player } from "./Player.js";
+import { Game } from "./Game.js";
 
 
 export abstract class WanderableCharacter extends CharacterBase {

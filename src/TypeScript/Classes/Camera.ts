@@ -1,5 +1,6 @@
 import { IMovable, IRenderable } from "../Interfaces/Interfaces";
 import { BasicRendering } from "./BasicRendering.js";
+import { Clamp } from "../Scripts/Utils.js";
 import { Vector2 } from "./Structs.js";
 import { Game } from "./Game.js";
 
@@ -13,11 +14,22 @@ export class Camera implements IMovable, IRenderable {
     public position:Vector2 = new Vector2(); // x:0 y: 0
     public cameraZoomAmountMax:number = 2;
     public cameraZoomAmount:number = 1;
-    public speed:number =  700;
+    public smoothing:number = 10;
+    public speed:number = 500;
+    public id:number = 0;
 
-    private target?:Nullable<IMovable> = null;
+    public targetPosition:Vector2 = new Vector2();
+    private static nextId:number = 0;
 
-    public constructor(private game:Game, private cameraName:string) {}
+    /**
+     * 
+     * @param game Game reference.
+     * @param cameraName A name for this Camera.
+     */
+    public constructor(private game:Game, private cameraName:string) {
+        this.id = Camera.nextId;
+        Camera.nextId++;
+    }
     
     public Render(ctx:CanvasRenderingContext2D):void {
         if (!this.game.debug) return;
@@ -27,8 +39,6 @@ export class Camera implements IMovable, IRenderable {
         const fontSize:number = 20;
         const textPosition:Vector2 = new Vector2(fontSize,this.game.canvasHeight - fontSize);
         
-        const padding:number = 10;
-        const thickness = 20;
         const position:Vector2 = new Vector2(this.game.canvasWidth*0.5, this.game.canvasHeight*0.5);
         BasicRendering.DrawRectangle(ctx,position,this.game.canvasWidth, this.game.canvasHeight, '#f00',0.1);
         BasicRendering.DrawStrokeRect(ctx,position,'#fff',20,this.game.canvasWidth,this.game.canvasHeight,0.5);
@@ -37,6 +47,24 @@ export class Camera implements IMovable, IRenderable {
     }
 
     public FollowTarget(target:IMovable):void {
+    }
+    
+    public FollowPosition() {
+        if (!this.targetPosition) return;
+        const speed:number = this.game.DeltaTime * this.speed;
 
+        if(this.position.y < this.targetPosition.y) 
+            this.position.y += speed;
+        
+        if (this.position.y > this.targetPosition.y) 
+            this.position.y -= speed;
+        
+        if (this.position.x < this.targetPosition.x)
+            this.position.x += speed;
+
+        if (this.position.x > this.targetPosition.x)
+            this.position.x -= speed;
+        
+        console.log(this.position);    
     }
 }

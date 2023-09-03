@@ -25,6 +25,7 @@ export class Game {
 
     public Render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.mainCamera.FollowPosition();
         this.mapEditor.Render(ctx);
         this.ProcessAI();
 
