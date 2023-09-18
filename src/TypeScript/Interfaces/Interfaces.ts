@@ -1,5 +1,5 @@
-import { Sprite, Vector2 } from "../Classes/Structs.js";
-import { GameObject } from "../Classes/GameObject.js";
+import { Sprite, Vector2 } from "../Classes/Structs";
+import { GameObject } from "../Classes/GameObject";
 
 export interface IGameObject {
     referenceName: string;

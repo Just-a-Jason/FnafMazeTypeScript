@@ -1,6 +1,5 @@
 import { IMovable, IRenderable } from "../Interfaces/Interfaces";
 import { BasicRendering } from "./BasicRendering.js";
-import { Clamp } from "../Scripts/Utils.js";
 import { Vector2 } from "./Structs.js";
 import { Game } from "./Game.js";
 
@@ -15,8 +14,8 @@ export class Camera implements IMovable, IRenderable {
     public cameraZoomAmountMax:number = 2;
     public cameraZoomAmount:number = 1;
     public smoothing:number = 10;
+    public readonly id:number = 0;
     public speed:number = 500;
-    public id:number = 0;
 
     public targetPosition:Vector2 = new Vector2();
     private static nextId:number = 0;
@@ -27,8 +26,7 @@ export class Camera implements IMovable, IRenderable {
      * @param cameraName A name for this Camera.
      */
     public constructor(private game:Game, private cameraName:string) {
-        this.id = Camera.nextId;
-        Camera.nextId++;
+        this.id = Camera.nextId++;
     }
     
     public Render(ctx:CanvasRenderingContext2D):void {

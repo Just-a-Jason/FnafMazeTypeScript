@@ -4,7 +4,6 @@ import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game.js";
 import { UI } from "../Classes/UI.js";
 import { Clamp } from "./Utils.js";
-import { IMovable } from "../Interfaces/Interfaces.js";
 
 window.addEventListener('load', () => {
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
