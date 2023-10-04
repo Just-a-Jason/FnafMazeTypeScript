@@ -1,5 +1,4 @@
 import { ICharacter } from "../Interfaces/Interfaces";
-import { BasicRendering } from "./BasicRendering.js";
 import { Sprite, Vector2 } from "./Structs.js";
 import { GameObject } from "./GameObject.js";
 
@@ -16,12 +15,7 @@ export class CharacterBase extends GameObject implements ICharacter {
 
     public sprite?: Sprite;
 
-    public Main(): void {
+    public Main():void {
         this.CheckForCollisions();
     }
-
-    public override Render(ctx: CanvasRenderingContext2D): void {        
-        if(this.game.debug) BasicRendering.DrawCircle(ctx, this.position, this.fov, "#0f0", 0.3);
-        if (this.sprite)  BasicRendering.DrawSprite(ctx, this.position, this.sprite);
-    }    
 }

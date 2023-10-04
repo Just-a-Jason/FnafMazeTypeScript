@@ -16,10 +16,10 @@ export class GameObject implements IGameObject, IRenderable, ICollideable {
         this.position = position;
     }
     
-    public CheckForCollisions(): void {
+    public CheckForCollisions():void {
     }
 
-    public Render(ctx: CanvasRenderingContext2D): void {
+    public Render(ctx:CanvasRenderingContext2D):void {
         if (this.game.debug) BasicRendering.DrawCircle(ctx,this.position,this.collisionRadius, '#f00', 0.5);
         if (this.sprite) BasicRendering.DrawSprite(ctx, this.position, this.sprite);
     }

@@ -1,27 +1,28 @@
 import { IRenderable } from "../Interfaces/Interfaces";
 import { BasicRendering } from "./BasicRendering.js";
+import { Clamp } from "../Scripts/Utils.js";
 import { Vector2 } from "./Structs.js";
 import { Player } from "./Player.js";
 import { Game } from "./Game.js";
-import { Clamp } from "../Scripts/Utils.js";
 import { FillAligment } from "../Enums/Enums";
 
 export class UI implements IRenderable { 
-    private player: Player | null = null;
+    private player:Nullable<Player> = null;
     private currentValue = 0;
 
     public constructor(private game:Game) {}
 
-    public Render(ctx: CanvasRenderingContext2D): void {
+    public Render(ctx:CanvasRenderingContext2D):void {
         if (!this.player) this.player = this.game.FindObjectByType(Player);
         else this.DrawPlayerUI(ctx);
+        this.game.mainCamera.Render(ctx);
         this.DrawFpsCounter(ctx);
     }
     
     private DrawFpsCounter(ctx:CanvasRenderingContext2D) {
         if (this.game.debug) {
             const backgroundPosition:Vector2 = new Vector2(this.game.canvasWidth);
-            const backgroundSize:Vector2 = new Vector2(200, 100);
+            const backgroundSize:Vector2 = new Vector2(200, 80);
             const fontSize = 20;
 
             const textPosition:Vector2 = new Vector2(this.game.canvasWidth - backgroundSize.x*0.5 + fontSize*0.5, backgroundSize.y *0.5 - fontSize*0.5);

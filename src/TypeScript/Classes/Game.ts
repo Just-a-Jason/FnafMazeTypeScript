@@ -1,4 +1,4 @@
-import { ICollideable, IRenderable } from "../Interfaces/Interfaces.js";
+import { ICollideable, IRenderable } from "../Interfaces/Interfaces";
 import { CharacterBase } from "./CharaterBase.js";
 import { LevelSize } from "../Enums/Enums.js";
 import { GameObject } from "./GameObject.js";
@@ -9,9 +9,9 @@ import { Camera } from "./Camera.js";
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
-    public mainCamera:Camera = new Camera();
+    public mainCamera:Camera = new Camera(this, 'Main Camera');
     private renderable: IRenderable[] = [];
-    public UI: IRenderable | null = null;
+    public UI:Nullable<IRenderable> = null;
     public editMode:boolean = true;
     public debug:boolean = true;
     public DeltaTime:number = 1;
@@ -19,12 +19,13 @@ export class Game {
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
-    public Add(obj:IRenderable) {
-        this.renderable.push(obj)
+    public AddObject(obj:IRenderable) {
+        this.renderable.push(obj);
     }
 
     public Render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.mainCamera.FollowPosition();
         this.mapEditor.Render(ctx);
         this.ProcessAI();
 
@@ -72,7 +73,7 @@ export class Game {
         return objects;
     } 
 
-    public FindObjectByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T): T | null {
+    public FindObjectByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T):Nullable<T> {
         for (const obj of this.renderable) {
             if(obj === ignoreObject) continue;
             if (obj instanceof targetType) {
@@ -84,7 +85,7 @@ export class Game {
         return null;
     }
 
-    public FindObjectsByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T): T[] | null {
+    public FindObjectsByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T):Nullable<T[]> {
         const found: T[] = [];
         for (const obj of this.renderable) {
             if (obj === ignoreObject) continue;
@@ -97,7 +98,7 @@ export class Game {
         return (found.length > 0) ? found : null;
     }
 
-    private CalculateDeltaTime(): void {
+    private CalculateDeltaTime():void {
         const currentTime:number = performance.now();
         const deltaTime:number = currentTime - this.lastFrameTime;
         this.DeltaTime = deltaTime / 1000;
