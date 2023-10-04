@@ -1,6 +1,7 @@
 import { FillAligment } from "../Enums/Enums.js";
 import { Sprite, Vector2 } from "./Structs.js";
 
+
 /**
  * BasicRendering class
  * @abstract This class cannot be used as instance by using "new" operator.

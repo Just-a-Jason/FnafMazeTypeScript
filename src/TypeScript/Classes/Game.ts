@@ -19,8 +19,8 @@ export class Game {
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
-    public Add(obj:IRenderable) {
-        this.renderable.push(obj)
+    public AddObject(obj:IRenderable) {
+        this.renderable.push(obj);
     }
 
     public Render(ctx:CanvasRenderingContext2D):void  {

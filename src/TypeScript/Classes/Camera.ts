@@ -62,7 +62,5 @@ export class Camera implements IMovable, IRenderable {
 
         if (this.position.x > this.targetPosition.x)
             this.position.x -= speed;
-        
-        console.log(this.position);    
     }
 }
