@@ -14,9 +14,11 @@ export class Vector2 {
     }
 }
 
+import { SpriteCategory } from "../Enums/Enums";
+
 export class Sprite {
     public image: HTMLImageElement;
-    public constructor(public name:string, private path:string, public width:number, public height:number) {
+    public constructor(public readonly name:string, public readonly category:SpriteCategory, private path:string, public width:number, public height:number) {
         const i: HTMLImageElement = new Image();
         i.src = path;
 

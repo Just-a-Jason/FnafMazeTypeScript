@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
     
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
-    
+
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode === ControllerMode.Mouse) {
             const gridCellSize = game.mapEditor.levelSize * 0.5;

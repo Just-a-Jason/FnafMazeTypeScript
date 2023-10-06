@@ -1,8 +1,8 @@
-import { BasicRendering } from "./BasicRendering.js";
 import { IRenderable } from "../Interfaces/Interfaces.js";
-import { LevelSize, Sprites } from "../Enums/Enums.js";
-import { Sprite, Vector2 } from "./Structs.js";
+import { LevelSize, SpriteCategory, Sprites } from "../Enums/Enums.js";
+import { BasicRendering } from "./BasicRendering.js";
 import { SpriteChanger } from "../Enums/Enums.js";
+import { Sprite, Vector2 } from "./Structs.js";
 import { Game } from "./Game.js";
 
 export class MapEditor implements IRenderable {
@@ -17,6 +17,17 @@ export class MapEditor implements IRenderable {
 
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {this.InitGrid();}
 
+    public GetSpritesArray():Sprite[] {
+        let spriteArray = new Array<Sprite>();
+
+        for (const key of this.loadedSprites) {
+            const sprite:Sprite = Sprites[key as keyof typeof Sprites];
+
+            if(sprite.category === SpriteCategory.GameAsset) continue;
+            spriteArray.push(sprite);
+        }
+        return spriteArray;
+    }
 
     private InitGrid():void {
         // rowMaxCells^2
@@ -63,7 +74,6 @@ export class MapEditor implements IRenderable {
 
     public ChangeSprite(change:SpriteChanger):void {
         this.selectedSpriteIdx += change;
-        console.log(this.selectedSpriteIdx);
         if (this.selectedSpriteIdx > this.loadedSprites.length-1) this.selectedSpriteIdx = 0;
         if (this.selectedSpriteIdx < 0) this.selectedSpriteIdx = this.loadedSprites.length-1;
 

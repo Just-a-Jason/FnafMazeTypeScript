@@ -1,0 +1,76 @@
+.categoryBtn {
+    width: 368px;
+    color: #fff;
+    font-size: 25px;
+    background-color: #181818;
+    text-align: center;
+    margin: 2px 0px 2px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 4px solid #494848;
+    transition: 0.5s;
+}
+
+.categoryBtn:hover {
+    background-color: #5e5d5d;
+}
+
+.categoryList {
+    margin: 5px 0px 5px 0px;
+    display: none;
+}
+
+.categoryListActive {
+    display: block;
+}
+
+a, a:visited, a:active {
+    text-decoration: none;
+    color:#fff;
+}
+
+.editBoxCell {
+    width: 340px;
+    height: 73px;
+    margin: 10px;
+    cursor: pointer;
+    background: #101010;
+    padding: 5px;
+    border: solid 2px #356689;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px #222;
+    font-size: 35px;
+}
+.editBoxCell:hover {
+    background: #696868;
+}
+ 
+.editBoxCell img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+
+@media screen and (max-width: 1600px) {
+    .categoryBtn {
+        width: 200px;
+    }
+    .editBoxCell {
+        font-size: 25px;
+        width: 200px;
+    }
+    .editBoxCell img {
+        width: 40px;
+        height: 40px;
+    }
+    .scroll-view {
+        width: 260px;
+    }
+    .dialogBoxHolder {
+        height: 400px;
+        width: 200px;
+    }
+}

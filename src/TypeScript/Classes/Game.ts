@@ -5,6 +5,7 @@ import { GameObject } from "./GameObject.js";
 import { MapEditor } from "./MapEditor.js";
 import { Vector2 } from "./Structs.js";
 import { Camera } from "./Camera.js";
+import { UISelectionMenu } from "./UISelectionMenu.js";
 
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
@@ -16,6 +17,7 @@ export class Game {
     public debug:boolean = true;
     public DeltaTime:number = 1;
     public fps = 0;
+    public uiSelector: UISelectionMenu = new UISelectionMenu(this.mapEditor.GetSpritesArray());
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     

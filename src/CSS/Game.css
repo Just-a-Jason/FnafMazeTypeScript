@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+*{box-sizing: border-box;}
+
+body {
+    font-family: 'VT323', monospace;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+    display: flex;
+    margin: 0px;
+}
+
+.canvas {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.gridCell {
+    border-collapse: collapse;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    transition: 0.2s;
+}
+
+
+.gridCell:hover img {
+    opacity: 0.5;
+}
+
+.gridRow {
+    flex-direction: row;
+    display: flex;
+    margin: 0;
+    width: fit-content;
+}
+
+img {
+    filter:contrast(1.3);
+    transition: 0.5s;
+}
+
+.bluredLevel {
+    filter: blur(1px) brightness(0.5);   
+}
+
+#gameCanvas {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.toolBoxList {
+    background: #111f29;
+    width:90%;
+    text-align: center;
+    margin:5px 0px 5px 0px;
+    border:2px solid #356689;
+    transition: 0.2s;
+    display: none;
+    height: fit-content;
+}
+
+.toolBoxListItem {
+    /* background: #101010; */
+    width: 90px;
+    padding: 4px;
+}
+
+.toolBoxListItem img {
+    width: 80px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.toolBoxList p {
+    margin-top: 2px
+}
+
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+
+.editModeButton {
+    color: #fff;
+    text-align: center;
+    margin: 2px;
+    background: #111f29;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    border: solid 2px #356689;
+    height: 40px;
+    font-size: 25px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.selectedTile {
+    border: #f00 solid 1px;
+    background: #997c7c;
+    transform: translateX(16px) translateY(-5px);
+    border-radius: 10px;
+}
+
+.selectedGridCell {
+    background: #222;
+    border: 2px dashed #fff;
+   
+}
+
+.staticScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+    color: #ff8f00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    transition: 0.5s;
+    transform: translate(-395px, -400px);    
+}
+
+.staticScreen p {
+    position: absolute;
+    z-index: 999;
+    font-size: 90px;
+    filter: drop-shadow(1px 1px 20px #ff0) drop-shadow(1px 1px 40px #ff0);
+    text-shadow: 1px -1px 2px #000;
+    animation: blink 1s infinite;
+    cursor: pointer;
+}
+
+.lightScreen {
+    filter: drop-shadow(1px 1px 20px #1072b3) brightness(2);
+    opacity: 0.5; 
+    width: 800px;
+    height: 800px;
+    border: 5px solid #1072b3;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes blinkAndSpin {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotateY(0deg);
+    }
+    50% {
+        transform: translateY(120px) rotateY(90deg);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px) rotateY(180deg);
+    }
+}
+
+.coin {
+    
+    width: 100px;
+    position: absolute;
+    z-index: 1000;
+    animation: blinkAndSpin 1s infinite;
+    transform: translateY(100px) rotateY(45deg);
+    filter: drop-shadow(1px 1px 20px #ff0);
+
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.gameWindow p {
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+    margin: 0;
+    text-align: right;
+    transition: 0.2s;
+    
+}
+
+.gameWindow {
+    border: 5px solid #ffffff08;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.powerUpButton {
+    width: 40px;
+    height: 40px;
+    background: #101010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px dashed #fff;
+    margin: 4px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.powerUpButton img {
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+}
+
+.powerUpButton:hover {
+    background: #1072b3;
+}
+
+.flexrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userInterface {
+    margin-top: 10px;
+    overflow-y: hidden; 
+}
+
+@keyframes flipText {
+    0% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.flipText {
+    animation: flipText 0.3s;
+}
+
+.inventorySlotJump {
+    animation: InventoryItemJump 0.2s;
+} 
+
+@keyframes InventoryItemJump {
+    0% {
+        transform: translateY(80px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.dialogBox {
+    width: 400px;
+    background: #040404;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+    animation: ShiftDialogBox 0.5s;
+}
+
+.dialogBox img {
+    width: 80px;
+    height: 80px;
+    background: #181818;
+}
+
+.dialogBox p {
+    width: 80%;
+}
+
+@keyframes ShiftDialogBox {
+    0% {
+        transform: translateX(-400px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.dialogBoxHolder {
+    height: 800px;
+    width: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: solid 5px #ffffff47;
+}
+
+.scroll-view {
+    width: 400px;
+    color: #fff;
+    height: 450px;
+    overflow-y: scroll;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #4685ce5c;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.scroll-view::-webkit-scrollbar {
+    width: 0px;
+}
+
+  .scroll-item {
+    margin-bottom: 10px;
+  }
+
+  .play-button {
+    background: #1072b3;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 30px;
+    border-radius: 10px;
+    border: solid 5px #ffffff24;
+    background: #333;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.addExternalBtn {
+    background: #2774a0;
+    color:#fff;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    border: 5px solid #0a4077;
+}
