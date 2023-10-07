@@ -14,9 +14,11 @@ export class Vector2 {
     }
 }
 
+import { SpriteCategory } from "../Enums/Enums";
+
 export class Sprite {
     public image: HTMLImageElement;
-    public constructor(public name:string, private path:string, public width:number, public height:number) {
+    public constructor(public readonly name:string, public readonly category:SpriteCategory, private path:string, public width:number, public height:number) {
         const i: HTMLImageElement = new Image();
         i.src = path;
 
@@ -25,5 +27,17 @@ export class Sprite {
         };
         
         this.image = i;
+    }
+
+    public GetCategory():string {
+        switch(this.category) {
+            case SpriteCategory.Character: return 'Characters';
+            case SpriteCategory.PlayerSprite: return 'Player Sprites';
+            case SpriteCategory.CustomTile: return 'Custom Tiles';
+            case SpriteCategory.SolidTile: return 'Solid tiles';
+            case SpriteCategory.CollectableItem: return 'Collectable items';
+            case SpriteCategory.PowerUp: return 'Powerups';
+            default: return 'Other';
+        }
     }
 }

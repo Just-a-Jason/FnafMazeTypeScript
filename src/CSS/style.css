@@ -15,6 +15,7 @@ body {
     box-shadow: 10px 10px 5px #111;
     border:solid 5px #350000;
     background: #000;
+    margin-left: 40px;
 }
 
 main {
