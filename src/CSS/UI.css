@@ -29,7 +29,7 @@ a, a:visited, a:active {
     color:#fff;
 }
 
-.editBoxCell {
+.uiSelectableButton {
     width: 340px;
     height: 73px;
     margin: 10px;
@@ -53,11 +53,11 @@ a, a:visited, a:active {
     margin-top: 15px;
 }
 
-.editBoxCell:hover {
+.uiSelectableButton:hover {
     background: #696868;
 }
  
-.editBoxCell img {
+.uiSelectableButton img {
     width: 60px;
     height: 60px;
     margin: 5px;
@@ -65,13 +65,13 @@ a, a:visited, a:active {
 
 @media screen and (max-width: 1600px) {
     .categoryBtn {
-        width: 200px;
+        width: 232px;
     }
-    .editBoxCell {
+    .uiSelectableButton {
         font-size: 25px;
         width: 200px;
     }
-    .editBoxCell img {
+    .uiSelectableButton img {
         width: 40px;
         height: 40px;
     }

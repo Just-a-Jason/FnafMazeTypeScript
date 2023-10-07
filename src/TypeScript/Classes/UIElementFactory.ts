@@ -1,5 +1,4 @@
 import { IUICategoryButton } from "../Interfaces/Interfaces";
-import { MapEditor } from "./MapEditor";
 import { Sprite } from "./Structs";
 
 export class UIElementFactory {
@@ -52,10 +51,11 @@ export class UIElementFactory {
         tileName.innerText = sprite.name;
         
         SelectableButton.setAttribute("tile-meta-name", sprite.name);
-        SelectableButton.classList.add("editBoxCell");
+        SelectableButton.classList.add("uiSelectableButton");
 
         SelectableButton.appendChild(tileName);
         SelectableButton.appendChild(sprite.image);
+
         return SelectableButton;
     }
 }

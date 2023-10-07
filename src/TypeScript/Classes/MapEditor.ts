@@ -4,6 +4,7 @@ import { BasicRendering } from "./BasicRendering.js";
 import { SpriteChanger } from "../Enums/Enums.js";
 import { Sprite, Vector2 } from "./Structs.js";
 import { Game } from "./Game.js";
+import { UISelectionMenu } from "./UISelectionMenu.js";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
@@ -13,6 +14,7 @@ export class MapEditor implements IRenderable {
     private selectedSpriteIdx = 0;
     private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
+
     public static Instance:Nullable<MapEditor> = null;
     
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {
@@ -20,7 +22,7 @@ export class MapEditor implements IRenderable {
         if (!MapEditor.Instance) MapEditor.Instance = this;
     }
     
-    public selectedSprite:Sprite = Sprites.Cupcake;
+    public selectedSprite:Sprite = Sprites[this.loadedSprites[0] as keyof typeof Sprites];
     
     public GetSpritesArray():Array<Sprite> {
         let spriteArray = new Array<Sprite>();
@@ -36,6 +38,16 @@ export class MapEditor implements IRenderable {
 
     public SetSprite(spriteName:string):void {
         this.selectedSprite = Sprites[spriteName as keyof typeof Sprites];
+    }
+
+    public SetTileButtonAsActive():void {
+        const other:Nullable<UISelectableButton> = document.querySelector('.selectedTile');
+
+        other?.classList.remove('selectedTile');
+
+        const btn:UISelectableButton = UISelectionMenu.Instance?.selectableButtons.get(this.selectedSprite)!;
+        
+        btn.classList.add('selectedTile');
     }
 
     private InitGrid():void {
@@ -87,7 +99,10 @@ export class MapEditor implements IRenderable {
         if (this.selectedSpriteIdx < 0) this.selectedSpriteIdx = this.loadedSprites.length-1;
 
         const key:string = this.loadedSprites[this.selectedSpriteIdx];
-        this.selectedSprite = Sprites[key as keyof typeof Sprites];
+        const sprite:Sprite = Sprites[key as keyof typeof Sprites];
+        this.selectedSprite = sprite;
+
+        this.SetTileButtonAsActive();
     }
 
     private RenderBackground(ctx:CanvasRenderingContext2D):void {
@@ -124,6 +139,11 @@ export class MapEditor implements IRenderable {
             ctx.filter = 'opacity(0.5) contrast(1.3)';
             BasicRendering.DrawSprite(ctx, this.cursorPosition, this.selectedSprite, this.levelSize, this.levelSize);
         ctx.restore();
+        const pos = Vector2.Copy(this.cursorPosition);
+        pos.x -= (10*this.selectedSprite.name.length)/2;
+        pos.y += this.levelSize / 1.5;
+
+        BasicRendering.DrawText(ctx,this.selectedSprite.name,pos,200,'#fff',"10px 'Press Start 2P', cursive");
         BasicRendering.DrawSprite(ctx, this.cursorPosition, Sprites.DashedBG, this.levelSize, this.levelSize);
     }
 }

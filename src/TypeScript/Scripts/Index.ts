@@ -72,18 +72,13 @@ window.addEventListener('load', () => {
             const targetPosition:Vector2 = mainCamera.targetPosition; 
 
             switch(e.key) {
-                case 'w': 
-                    targetPosition.y += -moveSpeed;
-                break;
-                case 's':
-                    targetPosition.y += moveSpeed;
-                break;
-                case 'a':
-                    targetPosition.x += -moveSpeed;
-                break;
-                case 'd':
-                    targetPosition.x += moveSpeed;
-                break;
+                case 'w': targetPosition.y += -moveSpeed; break;
+                case 's': targetPosition.y += moveSpeed; break;
+                case 'a': targetPosition.x += -moveSpeed; break;
+                case 'd': targetPosition.x += moveSpeed; break;
+                
+                case 'q': game.mapEditor.ChangeSprite(SpriteChanger.Previous); break;
+                case 'e': game.mapEditor.ChangeSprite(SpriteChanger.Next); break;
             }
         }
     });
