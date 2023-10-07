@@ -28,4 +28,16 @@ export class Sprite {
         
         this.image = i;
     }
+
+    public GetCategory():string {
+        switch(this.category) {
+            case SpriteCategory.Character: return 'Characters';
+            case SpriteCategory.PlayerSprite: return 'Player Sprites';
+            case SpriteCategory.CustomTile: return 'Custom Tiles';
+            case SpriteCategory.SolidTile: return 'Solid tiles';
+            case SpriteCategory.CollectableItem: return 'Collectable items';
+            case SpriteCategory.PowerUp: return 'Powerups';
+            default: return 'Other';
+        }
+    }
 }

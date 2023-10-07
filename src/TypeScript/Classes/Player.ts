@@ -12,7 +12,7 @@ chaseMusic.loop = true;
 chaseMusic.volume = 0;
 
 export class Player extends GameObject {
-    public sprite: Sprite = Sprites.Player;
+    public sprite: Sprite = Sprites.Guard;
     public isChased: boolean = false;
     private normalSpeed:number = 200;
     private runSpeed:number = this.normalSpeed * 2; 

@@ -1,10 +1,10 @@
+import { IDebuggable, IUICategoryButton } from "../Interfaces/Interfaces";
 import { UIElementFactory } from "./UIElementFactory.js";
-import { IDebuggable } from "../Interfaces/Interfaces";
-import { SpriteCategory } from "../Enums/Enums";
+import { MapEditor } from "./MapEditor.js";
 import { Sprite } from "./Structs";
 
 export class UISelectionMenu implements IDebuggable {
-    private categorisedMenuItems: Nullable<Map<SpriteCategory, Array<Sprite>>> = null;
+    private categorisedMenuItems: Nullable<Map<string, Array<Sprite>>> = null;
     private menu: Nullable<Element> = null;
     private selectedElement:number = 0;
     
@@ -29,6 +29,10 @@ export class UISelectionMenu implements IDebuggable {
             if (this.categorisedMenuItems) {
                 
                 for (let category of this.categorisedMenuItems.keys()) {
+                    const ctgb:IUICategoryButton = UIElementFactory.CreateCategoryButton(category);
+                    scrollView.appendChild(ctgb.object);
+                    scrollView.appendChild(ctgb.itemList);
+
                     const sprites:Array<Sprite> = this.categorisedMenuItems.get(category)!;
 
                     for (const sprite of sprites) {
@@ -36,16 +40,21 @@ export class UISelectionMenu implements IDebuggable {
 
                         tsb.addEventListener('click', (e:MouseEvent) => {
                             // Small performance trick
-                            if ((e.currentTarget as UISelectableButton).classList.contains('selectedTile')) return;
+                            const target:UISelectableButton = (e.currentTarget as UISelectableButton);
+                            if (target.classList.contains('selectedTile')) return;
 
                             const other:Nullable<Element> = document.querySelector('.selectedTile');
                             
                             if (other) other.classList.remove('selectedTile');
+                            
+                            const spriteName:string = target.getAttribute('tile-meta-name')!;
 
-                            (e.currentTarget as UISelectableButton).classList.add('selectedTile');
+                            MapEditor.Instance?.SetSprite(spriteName);
+
+                            target.classList.add('selectedTile');
                         });
 
-                        scrollView.appendChild(tsb);
+                        ctgb.itemList.appendChild(tsb);
                     }
                 }
             }
@@ -54,21 +63,23 @@ export class UISelectionMenu implements IDebuggable {
     }
     
     private Categorize(){
-        const map:Map<SpriteCategory, Array<Sprite>> = new Map<SpriteCategory, Array<Sprite>>();
+        const map:Map<string, Array<Sprite>> = new Map<string, Array<Sprite>>();
         
         // Clear array first
         if (this.categorisedMenuItems) this.categorisedMenuItems = null;
 
         for (let sprite of this.sprites) {
-            if (!map.has(sprite.category)) map.set(sprite.category, new Array<Sprite>());
+            const category:string = sprite.GetCategory();
+            if (!map.has(sprite.GetCategory())) map.set(sprite.GetCategory(), new Array<Sprite>());
             
-            map.get(sprite.category)?.push(sprite);
+            map.get(category)?.push(sprite);
         }
         
         this.categorisedMenuItems = map;
     }
 
     public Log(): void {
-        throw new Error("Not implemented yet.");
+        console.log(`All tiles categories count: ${this.categorisedMenuItems?.size}`);
+        console.log(this.categorisedMenuItems);
     }
 }

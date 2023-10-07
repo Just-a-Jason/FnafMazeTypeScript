@@ -13,10 +13,14 @@ export class MapEditor implements IRenderable {
     private selectedSpriteIdx = 0;
     private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
+    public static Instance:Nullable<MapEditor> = null;
     
-    public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {this.InitGrid();}
+    public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {
+        this.InitGrid(); 
+        if (!MapEditor.Instance) MapEditor.Instance = this;
+    }
     
-    public selectedSprite:Sprite = Sprites.CupCake;
+    public selectedSprite:Sprite = Sprites.Cupcake;
     
     public GetSpritesArray():Array<Sprite> {
         let spriteArray = new Array<Sprite>();
@@ -28,6 +32,10 @@ export class MapEditor implements IRenderable {
             spriteArray.push(sprite);
         }
         return spriteArray;
+    }
+
+    public SetSprite(spriteName:string):void {
+        this.selectedSprite = Sprites[spriteName as keyof typeof Sprites];
     }
 
     private InitGrid():void {

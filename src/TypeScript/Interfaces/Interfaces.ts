@@ -46,3 +46,8 @@ export interface IChaser {
     isChaseing:boolean;
     Chase():void;
 }
+
+export interface IUICategoryButton {
+    object:UICategoryButton;
+    itemList:CategoryList;
+}

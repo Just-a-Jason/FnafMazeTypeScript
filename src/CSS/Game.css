@@ -93,10 +93,6 @@ img {
     flex-direction: column;
 }
 
-
-
-
-
 .editModeButton {
     color: #fff;
     text-align: center;
@@ -113,176 +109,6 @@ img {
     font-size: 25px;
     width: 100%;
     margin-bottom: 10px;
-}
-
-
-.selectedTile {
-    border: #f00 solid 1px;
-    background: #997c7c;
-    transform: translateX(16px) translateY(-5px);
-    border-radius: 10px;
-}
-
-.selectedGridCell {
-    background: #222;
-    border: 2px dashed #fff;
-   
-}
-
-.staticScreen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 99;
-    color: #ff8f00;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'VT323', monospace;
-    transition: 0.5s;
-    transform: translate(-395px, -400px);    
-}
-
-.staticScreen p {
-    position: absolute;
-    z-index: 999;
-    font-size: 90px;
-    filter: drop-shadow(1px 1px 20px #ff0) drop-shadow(1px 1px 40px #ff0);
-    text-shadow: 1px -1px 2px #000;
-    animation: blink 1s infinite;
-    cursor: pointer;
-}
-
-.lightScreen {
-    filter: drop-shadow(1px 1px 20px #1072b3) brightness(2);
-    opacity: 0.5; 
-    width: 800px;
-    height: 800px;
-    border: 5px solid #1072b3;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes blinkAndSpin {
-    0% {
-        opacity: 0;
-        transform: translateY(100px) rotateY(0deg);
-    }
-    50% {
-        transform: translateY(120px) rotateY(90deg);
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(100px) rotateY(180deg);
-    }
-}
-
-.coin {
-    
-    width: 100px;
-    position: absolute;
-    z-index: 1000;
-    animation: blinkAndSpin 1s infinite;
-    transform: translateY(100px) rotateY(45deg);
-    filter: drop-shadow(1px 1px 20px #ff0);
-
-}
-
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding-top: 20px;
-}
-
-.gameWindow p {
-    color: #fff;
-    font-family: 'VT323', monospace;
-    font-size: 30px;
-    margin: 0;
-    text-align: right;
-    transition: 0.2s;
-    
-}
-
-.gameWindow {
-    border: 5px solid #ffffff08;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.powerUpButton {
-    width: 40px;
-    height: 40px;
-    background: #101010;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border: 2px dashed #fff;
-    margin: 4px;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.powerUpButton img {
-    height: 30px;
-    width: 30px;
-    margin: 10px;
-}
-
-.powerUpButton:hover {
-    background: #1072b3;
-}
-
-.flexrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.userInterface {
-    margin-top: 10px;
-    overflow-y: hidden; 
-}
-
-@keyframes flipText {
-    0% {
-        transform: translateY(100px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.flipText {
-    animation: flipText 0.3s;
-}
-
-.inventorySlotJump {
-    animation: InventoryItemJump 0.2s;
-} 
-
-@keyframes InventoryItemJump {
-    0% {
-        transform: translateY(80px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
 }
 
 .dialogBox {
@@ -310,10 +136,10 @@ main {
 }
 
 @keyframes ShiftDialogBox {
-    0% {
+    from {
         transform: translateX(-400px);
     }
-    100% {
+    to {
         transform: translateX(0px);
     }
 }
@@ -343,18 +169,18 @@ main {
     width: 0px;
 }
 
-  .scroll-item {
+.scroll-item {
     margin-bottom: 10px;
-  }
+}
 
-  .play-button {
+.play-button {
     background: #1072b3;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-  }
+}
 
 select {
     width: 100%;
