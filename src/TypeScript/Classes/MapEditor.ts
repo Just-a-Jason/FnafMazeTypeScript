@@ -14,11 +14,13 @@ export class MapEditor implements IRenderable {
     private selectedSpriteIdx = 0;
     private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
+    private clickAudio:HTMLAudioElement = new Audio('../Sounds/Effects/click.ogg');
 
     public static Instance:Nullable<MapEditor> = null;
     
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {
         this.InitGrid(); 
+        this.clickAudio.volume = 0.5;
         if (!MapEditor.Instance) MapEditor.Instance = this;
     }
     
@@ -38,6 +40,7 @@ export class MapEditor implements IRenderable {
 
     public SetSprite(spriteName:string):void {
         this.selectedSprite = Sprites[spriteName as keyof typeof Sprites];
+        this.clickAudio.play();
     }
 
     public SetTileButtonAsActive():void {
@@ -48,6 +51,7 @@ export class MapEditor implements IRenderable {
         const btn:UISelectableButton = UISelectionMenu.Instance?.selectableButtons.get(this.selectedSprite)!;
         
         btn.classList.add('selectedTile');
+        this.clickAudio.play();
     }
 
     private InitGrid():void {
@@ -101,7 +105,8 @@ export class MapEditor implements IRenderable {
         const key:string = this.loadedSprites[this.selectedSpriteIdx];
         const sprite:Sprite = Sprites[key as keyof typeof Sprites];
         this.selectedSprite = sprite;
-
+        
+        if (this.selectedSprite.category === SpriteCategory.GameAsset) this.ChangeSprite(SpriteChanger.Next);
         this.SetTileButtonAsActive();
     }
 
