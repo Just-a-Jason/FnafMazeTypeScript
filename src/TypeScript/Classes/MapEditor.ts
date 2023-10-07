@@ -7,17 +7,18 @@ import { Game } from "./Game.js";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
-    public selectedSprite:Sprite = Sprites.CupCake;
-    public grid:Sprite[] | null[] = [];
-
-    private loadedSprites: string[] = Object.keys(Sprites);
+    public grid:Nullable<Array<Nullable<Sprite>>> = new Array<Nullable<Sprite>>();
+    
+    private loadedSprites: Array<string> = Object.keys(Sprites);
     private selectedSpriteIdx = 0;
-    private pattern:string[] = [];
+    private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
-
+    
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {this.InitGrid();}
-
-    public GetSpritesArray():Sprite[] {
+    
+    public selectedSprite:Sprite = Sprites.CupCake;
+    
+    public GetSpritesArray():Array<Sprite> {
         let spriteArray = new Array<Sprite>();
 
         for (const key of this.loadedSprites) {
@@ -38,18 +39,18 @@ export class MapEditor implements IRenderable {
                 } else {
                     this.pattern.push('#101314');
                 }
-                this.grid.push(null!);
+                this.grid?.push(null!);
             }
         }
         this.LoadEmptyLevel();
     }
 
     public PlaceSprite():void {
-        this.grid[this.gridIndex] = this.selectedSprite;
+        this.grid![this.gridIndex] = this.selectedSprite;
     }
     
     public RemoveSprite():void {
-        this.grid[this.gridIndex] = null;
+        this.grid![this.gridIndex] = null;
     }
 
     public CalculateGridIndex():void {
@@ -63,13 +64,13 @@ export class MapEditor implements IRenderable {
     }
     
     private AddFullRow(y:number):void {
-        for (let x = 0; x < this.rowMaxCells; x++) this.grid[x+y*this.rowMaxCells] = Sprites.Wall;
+        for (let x = 0; x < this.rowMaxCells; x++) this.grid![x+y*this.rowMaxCells] = Sprites.Wall;
     }
 
     private AddBoxedColumn(y:number):void {
         const startPosition = y*this.rowMaxCells;
-        this.grid[startPosition] = Sprites.Wall;
-        this.grid[startPosition+(this.rowMaxCells-1)] = Sprites.Wall;
+        this.grid![startPosition] = Sprites.Wall;
+        this.grid![startPosition+(this.rowMaxCells-1)] = Sprites.Wall;
     }
 
     public ChangeSprite(change:SpriteChanger):void {
@@ -98,10 +99,10 @@ export class MapEditor implements IRenderable {
         for (let x = 0; x < this.rowMaxCells; x++) {
             for (let y = 0; y < this.rowMaxCells; y++) {
                 BasicRendering.DrawRectangle(ctx, offset,this.levelSize,this.levelSize, this.pattern[idx]);
-                if (this.grid[idx] !== null) {
+                if (this.grid![idx] !== null) {
                     ctx.save();
                     ctx.filter = 'contrast(1.3)';
-                    BasicRendering.DrawSprite(ctx, offset, this.grid[idx]!, this.levelSize*this.game.mainCamera.cameraZoomAmount, this.levelSize*this.game.mainCamera.cameraZoomAmount);
+                    BasicRendering.DrawSprite(ctx, offset, this.grid![idx]!, this.levelSize*this.game.mainCamera.cameraZoomAmount, this.levelSize*this.game.mainCamera.cameraZoomAmount);
                     ctx.restore();
                 }
                 offset.x += this.levelSize;

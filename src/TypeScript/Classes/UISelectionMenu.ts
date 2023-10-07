@@ -4,11 +4,11 @@ import { SpriteCategory } from "../Enums/Enums";
 import { Sprite } from "./Structs";
 
 export class UISelectionMenu implements IDebuggable {
-    private categorisedMenuItems: Nullable<Map<SpriteCategory, Sprite[]>> = null;
+    private categorisedMenuItems: Nullable<Map<SpriteCategory, Array<Sprite>>> = null;
     private menu: Nullable<Element> = null;
     private selectedElement:number = 0;
     
-    public constructor(public sprites:Sprite[]) {
+    public constructor(public sprites:Array<Sprite>) {
         this.Init();
     }
     
@@ -35,6 +35,7 @@ export class UISelectionMenu implements IDebuggable {
                         const tsb:UISelectableButton = UIElementFactory.CreateTileSelectableButton(sprite);
 
                         tsb.addEventListener('click', (e:MouseEvent) => {
+                            // Small performance trick
                             if ((e.currentTarget as UISelectableButton).classList.contains('selectedTile')) return;
 
                             const other:Nullable<Element> = document.querySelector('.selectedTile');
@@ -53,7 +54,7 @@ export class UISelectionMenu implements IDebuggable {
     }
     
     private Categorize(){
-        const map:Map<SpriteCategory, Sprite[]> = new Map<SpriteCategory, Sprite[]>();
+        const map:Map<SpriteCategory, Array<Sprite>> = new Map<SpriteCategory, Array<Sprite>>();
         
         // Clear array first
         if (this.categorisedMenuItems) this.categorisedMenuItems = null;

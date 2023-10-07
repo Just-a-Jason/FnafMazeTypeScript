@@ -11,13 +11,14 @@ export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
     public mainCamera:Camera = new Camera(this, 'Main Camera');
-    private renderable: IRenderable[] = [];
+    private renderable: Array<IRenderable> = new Array<IRenderable>();
     public UI:Nullable<IRenderable> = null;
     public editMode:boolean = true;
     public debug:boolean = true;
     public DeltaTime:number = 1;
     public fps = 0;
-    public uiSelector: UISelectionMenu = new UISelectionMenu(this.mapEditor.GetSpritesArray());
+
+    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.GetSpritesArray());
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
@@ -64,8 +65,8 @@ export class Game {
             return null;
     } 
 
-    public FindObjectsByReferenceName(name:string): GameObject[] {
-        const objects: GameObject[] = [];
+    public FindObjectsByReferenceName(name:string): Array<GameObject> {
+        const objects: Array<GameObject> = new Array<GameObject>();
         
         for (let obj of this.renderable) {
             if ((obj as GameObject).referenceName === name){
@@ -75,7 +76,7 @@ export class Game {
         return objects;
     } 
 
-    public FindObjectByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T):Nullable<T> {
+    public FindObjectByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<T> {
         for (const obj of this.renderable) {
             if(obj === ignoreObject) continue;
             if (obj instanceof targetType) {
@@ -87,8 +88,8 @@ export class Game {
         return null;
     }
 
-    public FindObjectsByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T):Nullable<T[]> {
-        const found: T[] = [];
+    public FindObjectsByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<Array<T>> {
+        const found: Array<T> = new Array<T>();
         for (const obj of this.renderable) {
             if (obj === ignoreObject) continue;
             if (obj instanceof targetType) {
