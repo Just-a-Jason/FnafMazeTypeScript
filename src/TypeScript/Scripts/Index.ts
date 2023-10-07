@@ -122,9 +122,22 @@ window.addEventListener('load', () => {
                 if (gamepad.buttons[0].pressed) mapEditor.PlaceSprite(); // X button (PS4)
                 if (gamepad.buttons[1].pressed && !game.debug) mapEditor.RemoveSprite(); // Circle button (PS4)
                 
-                
-                if (gamepad.buttons[4].pressed) mapEditor.ChangeSprite(SpriteChanger.Previous); // L1 button (PS4)
-                if (gamepad.buttons[5].pressed) mapEditor.ChangeSprite(SpriteChanger.Next); // R1 button (PS4)
+                // L1 button (PS4)
+                if (gamepad.buttons[4].pressed) {
+                    mapEditor.ChangeSprite(SpriteChanger.Previous);
+                    gamepad.vibrationActuator?.playEffect('dual-rumble', {
+                        duration: 100,
+                        weakMagnitude: 0.7
+                    });
+                } 
+                // R1 button (PS4)
+                if (gamepad.buttons[5].pressed) {
+                    mapEditor.ChangeSprite(SpriteChanger.Next);
+                    gamepad.vibrationActuator?.playEffect('dual-rumble', {
+                        duration: 100,
+                        weakMagnitude: 0.7  
+                    });
+                } 
             }
         }
     }

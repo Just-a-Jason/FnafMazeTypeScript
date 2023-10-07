@@ -20,6 +20,11 @@ export const Sprites = {
     Guard: new Sprite('Guard', SpriteCategory.PlayerSprite,'../Images/Sprites/Player/Guard.webp', 70, 70),
     Wall: new Sprite('Wall', SpriteCategory.SolidTile,'../Images/Sprites/Solid Tiles/Wall.webp', 70, 70),
     DashedBG: new Sprite('DashedBG', SpriteCategory.GameAsset,'../Images/Assets/dashedbg.png', 40, 40),
+    Coin:new Sprite('Coin', SpriteCategory.CollectableItem, '../Images/Sprites/Collectables/coin.webp',20,20),
+    Cherry:new Sprite('Cherry', SpriteCategory.CollectableItem, '../Images/Sprites/Collectables/cherry.webp',70,70),
+    Mask:new Sprite('Mask', SpriteCategory.PowerUp, '../Images/Sprites/Powerups/mask.webp',70,70),
+    FlashLight:new Sprite('FlashLight', SpriteCategory.PowerUp, '../Images/Sprites/Powerups/flashlight.webp',70,70),
+    PhoneCall:new Sprite('PhoneCall', SpriteCategory.PowerUp, '../Images/Sprites/Powerups/phone call.webp',70,70),
     PinkBlock: new Sprite('PinkBlock', SpriteCategory.CustomTile, '../Images/Sprites/Custom Tiles/pink.webp',70,70)
 };
 
