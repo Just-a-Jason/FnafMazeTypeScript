@@ -3,16 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/loading screen.css">
         <link rel="stylesheet" href="../CSS/style.css">
+        <link rel="stylesheet" href="../CSS/Game.css">
+        <link rel="stylesheet" href="../CSS/UI.css">
         <title>Fnaf MazeGame Canvas</title>
     </head>
     <body>
+        <script src="../../build/Scripts/LoadingScreen.js"></script>
         <main>
-                <section class="tilesMenu">
-                    <p></p>
-                </section>
-                <canvas id="game-canvas"></canvas>
+            <canvas id="game-canvas"></canvas>
+                <div class="editModeUI">
+                    <div class="editModeButton">
+                        <p>PLAY MODE</p>
+                    </div>
+                    <div class="addExternalBtn"><a href="community.php?category=custom tiles#communityContent">
+                            <p>Add Exernal Tile</p>
+                        </a></div>
+                    <div class="addExternalBtn" id="saveLevel">
+                        <p>Save level</p></a>
+                    </div>
+                    <select>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                    <div class="scroll-view"></div>
+            </div>
+                
         </main>
-        <script type="module" src="../../build/JavaScript/Scripts/Index.js"></script>
+        <script type="module" src="../../build/Scripts/Index.js"></script>
     </body>
 </html>

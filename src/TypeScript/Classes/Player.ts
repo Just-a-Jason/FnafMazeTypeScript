@@ -12,14 +12,14 @@ chaseMusic.loop = true;
 chaseMusic.volume = 0;
 
 export class Player extends GameObject {
-    public sprite: Sprite = Sprites.Player;
+    public sprite: Sprite = Sprites.Guard;
     public isChased: boolean = false;
     private normalSpeed:number = 200;
     private runSpeed:number = this.normalSpeed * 2; 
     private speed:number = this.normalSpeed;
     private fov:number = 100;
 
-    private vibrationsRunner:number | null = null;
+    private vibrationsRunner:Nullable<number> = null;
     private running:boolean = false;
     private staminaMax: number = 100;
     private stamina:number = this.staminaMax;
@@ -65,7 +65,7 @@ export class Player extends GameObject {
         });
     }
 
-    private Move(gamepad:Gamepad | null):void {
+    private Move(gamepad:Nullable<Gamepad>):void {
         if (gamepad) {
             this.HandleGamePadButtonsInput(gamepad);
 

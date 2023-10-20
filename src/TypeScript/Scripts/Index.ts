@@ -1,8 +1,6 @@
-import { IMovable } from "../Interfaces/Interfaces.js";
-import { Springtrap} from "../Classes/Characters.js";
 import { ControllerMode, SpriteChanger } from "../Enums/Enums.js";
 import { Vector2 } from "../Classes/Structs.js";
-import { Player } from "../Classes/Player.js";
+import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game.js";
 import { UI } from "../Classes/UI.js";
 import { Clamp } from "./Utils.js";
@@ -10,20 +8,13 @@ import { Clamp } from "./Utils.js";
 window.addEventListener('load', () => {
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
-    canvas.width = 800;
     canvas.height = 800;
-
-    context2d.fillStyle = 'orange';
-    context2d.lineWidth = 4;
-
+    canvas.width = 800;
+    
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
 
-    // game.Add(new Springtrap(new Vector2(550, 550), "Springtrap", game));
-    // game.Add(new Player(new Vector2(50, 50), "Player", game));
-    
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
-        game.mouse.position = new Vector2(e.offsetX,e.offsetY);
         if (mouseControllMode === ControllerMode.Mouse) {
             const gridCellSize = game.mapEditor.levelSize * 0.5;
             const mouseX = Clamp(e.offsetX, gridCellSize, game.canvasWidth);
@@ -39,7 +30,7 @@ window.addEventListener('load', () => {
         }
     });
     
-    canvas.addEventListener('contextmenu', (e: MouseEvent) => {
+    canvas.addEventListener('contextmenu', (e:MouseEvent) => {
         e.preventDefault(); // Prevent the default context menu from appearing
     });
 
@@ -59,7 +50,7 @@ window.addEventListener('load', () => {
     }
     
     let mouseControllMode:ControllerMode = ControllerMode.Mouse;
-    let detectControllerLoop:number|null; 
+    let detectControllerLoop:Nullable<number>; 
     
     window.addEventListener('gamepadconnected', (e:GamepadEvent) => {
         detectControllerLoop = setInterval(DetectControllerPress, 100);
@@ -74,6 +65,32 @@ window.addEventListener('load', () => {
         mouseControllMode = ControllerMode.Mouse;
     });
 
+    window.addEventListener('keydown', (e:KeyboardEvent) => {
+        if (game.editMode) {
+            const mainCamera:Camera = game.mainCamera;
+            const moveSpeed:number = game.mapEditor.levelSize;
+            const targetPosition:Vector2 = mainCamera.targetPosition; 
+
+            switch(e.key) {
+                case 'w': targetPosition.y += -moveSpeed; break;
+                case 's': targetPosition.y += moveSpeed; break;
+                case 'a': targetPosition.x += -moveSpeed; break;
+                case 'd': targetPosition.x += moveSpeed; break;
+                
+                case 'q': game.mapEditor.ChangeSprite(SpriteChanger.Previous); break;
+                case 'e': game.mapEditor.ChangeSprite(SpriteChanger.Next); break;
+            }
+        }
+    });
+
+    // Handle mouse zooming
+    canvas.addEventListener('wheel', (e:WheelEvent) => {
+        // Main camera memory pointer (ref. reference)
+        const mainCamera:Camera = game.mainCamera;
+        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
+        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
+    });
+
     function DetectControllerPress() {
             const gamepad = navigator.getGamepads()[0];
         if (gamepad) {
@@ -81,7 +98,6 @@ window.addEventListener('load', () => {
                 game.debug = !game.debug;
             }
             
-
             if (game.editMode) {
                 const cursorPosition:Vector2 = game.mapEditor.cursorPosition;
                 const levelSize:number = game.mapEditor.levelSize;
@@ -106,13 +122,25 @@ window.addEventListener('load', () => {
                 if (gamepad.buttons[0].pressed) mapEditor.PlaceSprite(); // X button (PS4)
                 if (gamepad.buttons[1].pressed && !game.debug) mapEditor.RemoveSprite(); // Circle button (PS4)
                 
-                
-                if (gamepad.buttons[4].pressed) mapEditor.ChangeSprite(SpriteChanger.Previous); // L1 button (PS4)
-                if (gamepad.buttons[5].pressed) mapEditor.ChangeSprite(SpriteChanger.Next); // R1 button (PS4)
+                // L1 button (PS4)
+                if (gamepad.buttons[4].pressed) {
+                    mapEditor.ChangeSprite(SpriteChanger.Previous);
+                    gamepad.vibrationActuator?.playEffect('dual-rumble', {
+                        duration: 100,
+                        weakMagnitude: 0.7
+                    });
+                } 
+                // R1 button (PS4)
+                if (gamepad.buttons[5].pressed) {
+                    mapEditor.ChangeSprite(SpriteChanger.Next);
+                    gamepad.vibrationActuator?.playEffect('dual-rumble', {
+                        duration: 100,
+                        weakMagnitude: 0.7  
+                    });
+                } 
             }
         }
     }
-
 
     GameLoop();
 });

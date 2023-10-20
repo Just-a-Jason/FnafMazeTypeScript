@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.loadingScreen {
+    font-family: 'VT323', monospace;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+    transition: 0.5s;
+    position: fixed;
+    display: flex;
+    z-index: 140;
+    width: 100%;
+}
+.loadingScreen img.loading-spinner { height: 120px; width: 133px; }
+.loadingScreen img.loading-baner { height: 200px; width: 400px; }
+.loadingScreen p { color: #fff; font-size: 40px; }
+.loadingScreen img { margin: 20px; }

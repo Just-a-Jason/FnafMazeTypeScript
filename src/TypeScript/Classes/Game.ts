@@ -1,30 +1,34 @@
-import { ICollideable, IRenderable } from "../Interfaces/Interfaces.js";
+import { ICollideable, IRenderable } from "../Interfaces/Interfaces";
 import { CharacterBase } from "./CharaterBase.js";
 import { LevelSize } from "../Enums/Enums.js";
 import { GameObject } from "./GameObject.js";
 import { MapEditor } from "./MapEditor.js";
 import { Vector2 } from "./Structs.js";
-import { mouse } from "./mouse.js";
+import { Camera } from "./Camera.js";
+import { UISelectionMenu } from "./UISelectionMenu.js";
 
 export class Game {
-    public mouse: mouse = new mouse();
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
-    private renderable: IRenderable[] = [];
-    public UI: IRenderable | null = null;
+    public mainCamera:Camera = new Camera(this, 'Main Camera');
+    private renderable: Array<IRenderable> = new Array<IRenderable>();
+    public UI:Nullable<IRenderable> = null;
     public editMode:boolean = true;
     public debug:boolean = true;
     public DeltaTime:number = 1;
     public fps = 0;
+
+    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.GetSpritesArray());
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
-    public Add(obj:IRenderable) {
-        this.renderable.push(obj)
+    public AddObject(obj:IRenderable) {
+        this.renderable.push(obj);
     }
 
     public Render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.mainCamera.FollowPosition();
         this.mapEditor.Render(ctx);
         this.ProcessAI();
 
@@ -32,7 +36,6 @@ export class Game {
             obj.Render(ctx);
         });
         this.UI?.Render(ctx);
-        this.mouse.Render(ctx);
     }
 
     private ProcessAI():void {
@@ -51,7 +54,7 @@ export class Game {
        return [distance < sumOfRadii, distance, sumOfRadii, objectDistance];
     }
 
-    public FindObjectByReferenceName(name:string): null | GameObject {
+    public FindObjectByReferenceName(name:string): Nullable<GameObject> {
             for (let obj of this.renderable) {
                 if ((obj instanceof(GameObject))) {
                     if((obj as GameObject).referenceName === name) {
@@ -62,8 +65,8 @@ export class Game {
             return null;
     } 
 
-    public FindObjectsByReferenceName(name:string): GameObject[] {
-        const objects: GameObject[] = [];
+    public FindObjectsByReferenceName(name:string): Array<GameObject> {
+        const objects: Array<GameObject> = new Array<GameObject>();
         
         for (let obj of this.renderable) {
             if ((obj as GameObject).referenceName === name){
@@ -73,7 +76,7 @@ export class Game {
         return objects;
     } 
 
-    public FindObjectByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T): T | null {
+    public FindObjectByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<T> {
         for (const obj of this.renderable) {
             if(obj === ignoreObject) continue;
             if (obj instanceof targetType) {
@@ -85,8 +88,8 @@ export class Game {
         return null;
     }
 
-    public FindObjectsByType<T>(targetType: new (...args: any[]) => T, ignoreObject?:T): T[] | null {
-        const found: T[] = [];
+    public FindObjectsByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<Array<T>> {
+        const found: Array<T> = new Array<T>();
         for (const obj of this.renderable) {
             if (obj === ignoreObject) continue;
             if (obj instanceof targetType) {
@@ -98,7 +101,7 @@ export class Game {
         return (found.length > 0) ? found : null;
     }
 
-    private CalculateDeltaTime(): void {
+    private CalculateDeltaTime():void {
         const currentTime:number = performance.now();
         const deltaTime:number = currentTime - this.lastFrameTime;
         this.DeltaTime = deltaTime / 1000;
