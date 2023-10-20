@@ -5,6 +5,7 @@ import { Game } from "../Classes/Game.js";
 import { UI } from "../Classes/UI.js";
 import { Clamp } from "./Utils.js";
 
+// ez
 window.addEventListener('load', () => {
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
