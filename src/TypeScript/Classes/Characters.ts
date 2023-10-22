@@ -1,12 +1,12 @@
-import { IChaser, IMovable } from "../Interfaces/Interfaces.js";
-import { BasicRendering } from "./BasicRendering.js";
-import { CharacterBase } from "./CharaterBase.js";
-import { Sprite, Vector2} from "./Structs.js";
-import { RandInt } from "../Scripts/Utils.js";
-import { GameObject } from "./GameObject.js";
-import { Sprites } from "../Enums/Enums.js";
-import { Player } from "./Player.js";
-import { Game } from "./Game.js";
+import { IChaser, IMovable } from "../Interfaces/interfaces";
+import { BasicRendering } from "./BasicRendering";
+import { CharacterBase } from "./CharaterBase";
+import { Sprite, Vector2} from "./Structs";
+import { RandInt } from "../Scripts/utils";
+import { GameObject } from "./GameObject";
+import { Sprites } from "../Enums/enums";
+import { Player } from "./Player";
+import { Game } from "./Game";
 
 
 export abstract class WanderableCharacter extends CharacterBase {

@@ -1,10 +1,10 @@
-import { IRenderable } from "../Interfaces/Interfaces";
-import { BasicRendering } from "./BasicRendering.js";
-import { Clamp } from "../Scripts/Utils.js";
-import { Vector2 } from "./Structs.js";
-import { Player } from "./Player.js";
-import { Game } from "./Game.js";
-import { FillAligment } from "../Enums/Enums";
+import { IRenderable } from "../Interfaces/interfaces";
+import { BasicRendering } from "./BasicRendering";
+import { Clamp } from "../Scripts/utils";
+import { Vector2 } from "./Structs";
+import { Player } from "./Player";
+import { Game } from "./Game";
+import { FillAligment } from "../Enums/enums";
 
 export class UI implements IRenderable { 
     private player:Nullable<Player> = null;

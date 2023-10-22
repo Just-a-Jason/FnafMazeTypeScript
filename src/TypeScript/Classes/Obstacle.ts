@@ -1,7 +1,7 @@
-import { Sprites } from "../Enums/Enums.js";
-import { BasicRendering } from "./BasicRendering.js";
-import { GameObject } from "./GameObject.js";
-import { Sprite } from "./Structs.js";
+import { Sprites } from "../Enums/enums";
+import { BasicRendering } from "./BasicRendering";
+import { GameObject } from "./GameObject";
+import { Sprite } from "./Structs";
 
 export class Obstacle extends GameObject {
     public sprite: Sprite = Sprites.Wall;

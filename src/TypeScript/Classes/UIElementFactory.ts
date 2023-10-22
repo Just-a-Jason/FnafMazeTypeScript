@@ -1,4 +1,4 @@
-import { IUICategoryButton } from "../Interfaces/Interfaces";
+import { IUICategoryButton } from "../Interfaces/interfaces";
 import { Sprite } from "./Structs";
 
 export class UIElementFactory {

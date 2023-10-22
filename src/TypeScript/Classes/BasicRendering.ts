@@ -1,5 +1,5 @@
-import { FillAligment } from "../Enums/Enums.js";
-import { Sprite, Vector2 } from "./Structs.js";
+import { FillAligment } from "../Enums/enums";
+import { Sprite, Vector2 } from "./Structs";
 
 
 /**

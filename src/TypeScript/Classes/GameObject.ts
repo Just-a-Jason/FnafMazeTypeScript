@@ -1,7 +1,7 @@
-import { ICollideable, IGameObject, IRenderable } from "../Interfaces/Interfaces";
-import { BasicRendering } from "./BasicRendering.js";
-import { Sprite, Vector2 } from "./Structs.js";
-import { Game } from "./Game.js";
+import { ICollideable, IGameObject, IRenderable } from "../Interfaces/interfaces";
+import { BasicRendering } from "./BasicRendering";
+import { Sprite, Vector2 } from "./Structs";
+import { Game } from "./Game";
 
 export class GameObject implements IGameObject, IRenderable, ICollideable {
     public collisionPosition: Vector2 = new Vector2();

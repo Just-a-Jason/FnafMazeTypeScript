@@ -1,11 +1,15 @@
-import { ControllerMode, SpriteChanger } from "../Enums/Enums.js";
-import { Vector2 } from "../Classes/Structs.js";
+import { ControllerMode, SpriteChanger } from "../Enums/enums";
+import { Vector2 } from "../Classes/Structs";
 import { Camera } from "../Classes/Camera";
-import { Game } from "../Classes/Game.js";
-import { UI } from "../Classes/UI.js";
-import { Clamp } from "./Utils.js";
+import { Game } from "../Classes/Game";
+import { UI } from "../Classes/UI";
+import { Clamp } from "./utils";
 
 window.addEventListener('load', () => {
+    const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
+    music.loop = true;
+    
+
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
     canvas.height = 800;
@@ -35,6 +39,7 @@ window.addEventListener('load', () => {
     });
 
     canvas.addEventListener('mousedown', (e:MouseEvent) => {
+        music.play();
         if (!game.editMode) return;
 
         const mapEditor = game.mapEditor;
@@ -50,7 +55,7 @@ window.addEventListener('load', () => {
     }
     
     let mouseControllMode:ControllerMode = ControllerMode.Mouse;
-    let detectControllerLoop:Nullable<number>; 
+    let detectControllerLoop:any; 
     
     window.addEventListener('gamepadconnected', (e:GamepadEvent) => {
         detectControllerLoop = setInterval(DetectControllerPress, 100);

@@ -1,11 +1,11 @@
-import { ICollideable, IRenderable } from "../Interfaces/Interfaces";
-import { CharacterBase } from "./CharaterBase.js";
-import { LevelSize } from "../Enums/Enums.js";
-import { GameObject } from "./GameObject.js";
-import { MapEditor } from "./MapEditor.js";
-import { Vector2 } from "./Structs.js";
-import { Camera } from "./Camera.js";
-import { UISelectionMenu } from "./UISelectionMenu.js";
+import { ICollideable, IRenderable } from "../Interfaces/interfaces";
+import { CharacterBase } from "./CharaterBase";
+import { LevelSize } from "../Enums/enums";
+import { GameObject } from "./GameObject";
+import { MapEditor } from "./MapEditor";
+import { Vector2 } from "./Structs";
+import { Camera } from "./Camera";
+import { UISelectionMenu } from "./UISelectionMenu";
 
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);

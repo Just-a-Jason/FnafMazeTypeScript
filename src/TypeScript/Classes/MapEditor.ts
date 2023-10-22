@@ -1,10 +1,10 @@
-import { IRenderable } from "../Interfaces/Interfaces.js";
-import { LevelSize, SpriteCategory, Sprites } from "../Enums/Enums.js";
-import { BasicRendering } from "./BasicRendering.js";
-import { SpriteChanger } from "../Enums/Enums.js";
-import { Sprite, Vector2 } from "./Structs.js";
-import { Game } from "./Game.js";
-import { UISelectionMenu } from "./UISelectionMenu.js";
+import { IRenderable } from "../Interfaces/interfaces";
+import { LevelSize, SpriteCategory, Sprites } from "../Enums/enums";
+import { BasicRendering } from "./BasicRendering";
+import { SpriteChanger } from "../Enums/enums";
+import { Sprite, Vector2 } from "./Structs";
+import { Game } from "./Game";
+import { UISelectionMenu } from "./UISelectionMenu";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
@@ -14,7 +14,7 @@ export class MapEditor implements IRenderable {
     private selectedSpriteIdx = 0;
     private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
-    private clickAudio:HTMLAudioElement = new Audio('../Sounds/Effects/click.ogg');
+    private clickAudio:HTMLAudioElement = new Audio('Sounds/Effects/click.ogg');
 
     public static Instance:Nullable<MapEditor> = null;
     

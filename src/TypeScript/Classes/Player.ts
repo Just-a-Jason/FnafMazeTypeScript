@@ -1,11 +1,11 @@
-import { Sprites } from "../Enums/Enums.js";
-import { Clamp } from "../Scripts/Utils.js";
-import { BasicRendering } from "./BasicRendering.js";
-import { GameObject } from "./GameObject.js";
-import { Sprite, Vector2 } from "./Structs.js";
+import { Sprites } from "../Enums/enums";
+import { Clamp } from "../Scripts/utils";
+import { BasicRendering } from "./BasicRendering";
+import { GameObject } from "./GameObject";
+import { Sprite, Vector2 } from "./Structs";
 
-const chaseMusic:HTMLAudioElement = new Audio('../Music/Chase.ogg');
-const stompSound:HTMLAudioElement = new Audio('../Music/Stomp.ogg');
+const chaseMusic:HTMLAudioElement = new Audio('Sounds/Music/Chase.ogg');
+const stompSound:HTMLAudioElement = new Audio('Sounds/Music/Stomp.ogg');
 stompSound.volume = 1;
 
 chaseMusic.loop = true;
@@ -19,7 +19,7 @@ export class Player extends GameObject {
     private speed:number = this.normalSpeed;
     private fov:number = 100;
 
-    private vibrationsRunner:Nullable<number> = null;
+    private vibrationsRunner:any = null;
     private running:boolean = false;
     private staminaMax: number = 100;
     private stamina:number = this.staminaMax;

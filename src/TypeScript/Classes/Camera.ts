@@ -1,7 +1,7 @@
-import { IMovable, IRenderable } from "../Interfaces/Interfaces";
-import { BasicRendering } from "./BasicRendering.js";
-import { Vector2 } from "./Structs.js";
-import { Game } from "./Game.js";
+import { IMovable, IRenderable } from "../Interfaces/interfaces";
+import { BasicRendering } from "./BasicRendering";
+import { Vector2 } from "./Structs";
+import { Game } from "./Game";
 
 /**
  * Camera class represents movable and zoomable camera object in the game world.

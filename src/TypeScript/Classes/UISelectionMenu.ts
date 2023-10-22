@@ -1,6 +1,6 @@
-import { IDebuggable, IUICategoryButton } from "../Interfaces/Interfaces";
-import { UIElementFactory } from "./UIElementFactory.js";
-import { MapEditor } from "./MapEditor.js";
+import { IDebuggable, IUICategoryButton } from "../Interfaces/interfaces";
+import { UIElementFactory } from "./UIElementFactory";
+import { MapEditor } from "./MapEditor";
 import { Sprite } from "./Structs";
 
 export class UISelectionMenu implements IDebuggable {

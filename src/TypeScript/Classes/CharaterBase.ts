@@ -1,6 +1,6 @@
-import { ICharacter } from "../Interfaces/Interfaces";
-import { Sprite, Vector2 } from "./Structs.js";
-import { GameObject } from "./GameObject.js";
+import { ICharacter } from "../Interfaces/interfaces";
+import { Sprite, Vector2 } from "./Structs";
+import { GameObject } from "./GameObject";
 
 /**
  * Represents a base character in the game world.
