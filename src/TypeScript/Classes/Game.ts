@@ -1,6 +1,6 @@
 import { ICollideable, IRenderable } from "../Interfaces/interfaces";
 import { CharacterBase } from "./CharaterBase";
-import { LevelSize } from "../Enums/enums";
+import { LevelSize } from "../Enums/Enums";
 import { GameObject } from "./GameObject";
 import { MapEditor } from "./MapEditor";
 import { Vector2 } from "./Structs";

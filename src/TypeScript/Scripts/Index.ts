@@ -3,7 +3,7 @@ import { Vector2 } from "../Classes/Structs";
 import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
-import { Clamp } from "./utils";
+import { Clamp } from "./utilss";
 
 window.addEventListener('load', () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");

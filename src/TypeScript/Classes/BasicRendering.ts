@@ -1,4 +1,4 @@
-import { FillAligment } from "../Enums/enums";
+import { FillAligment } from "../Enums/Enums";
 import { Sprite, Vector2 } from "./Structs";
 
 

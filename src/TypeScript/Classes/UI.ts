@@ -1,6 +1,6 @@
 import { IRenderable } from "../Interfaces/interfaces";
 import { BasicRendering } from "./BasicRendering";
-import { Clamp } from "../Scripts/utils";
+import { Clamp } from "../Scripts/utilss";
 import { Vector2 } from "./Structs";
 import { Player } from "./Player";
 import { Game } from "./Game";

@@ -1,5 +1,5 @@
 import { Sprites } from "../Enums/enums";
-import { Clamp } from "../Scripts/utils";
+import { Clamp } from "../Scripts/utilss";
 import { BasicRendering } from "./BasicRendering";
 import { GameObject } from "./GameObject";
 import { Sprite, Vector2 } from "./Structs";
