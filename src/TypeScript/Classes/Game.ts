@@ -14,7 +14,7 @@ export class Game {
     private renderable: Array<IRenderable> = new Array<IRenderable>();
     public UI:Nullable<IRenderable> = null;
     public editMode:boolean = true;
-    public debug:boolean = true;
+    public debug:boolean = false;
     public DeltaTime:number = 1;
     public fps = 0;
 

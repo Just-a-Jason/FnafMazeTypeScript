@@ -9,7 +9,6 @@ window.addEventListener('load', () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
     music.loop = true;
     
-
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
     canvas.height = 800;
