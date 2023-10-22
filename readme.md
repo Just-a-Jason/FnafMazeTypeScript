@@ -24,6 +24,7 @@ I want to show you my game called: "The fnaf maze" it's build using:
 - [ ] Make Camera able to zoom-in zoom-out.
 - [x] Create select sprite categorized menu.
 - [ ] Use Fetch API to load not-standard tiles.
+- [X] Add Webpack support.
 - [ ] Improve character AI.
 
 I am working on it with a little bit of help of my dear friend, @Kuguar2.
