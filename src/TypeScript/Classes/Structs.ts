@@ -14,7 +14,7 @@ export class Vector2 {
     }
 }
 
-import { SpriteCategory } from "../Enums/Enums";
+import { SpriteCategory } from "../Enums/enums";
 
 export class Sprite {
     public image: HTMLImageElement;
