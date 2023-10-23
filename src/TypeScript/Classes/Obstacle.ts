@@ -1,4 +1,4 @@
-import { Sprites } from "../Enums/enums";
+import { Sprites } from "../Enums/Sprites";
 import { BasicRendering } from "./BasicRendering";
 import { GameObject } from "./GameObject";
 import { Sprite } from "./Structs";

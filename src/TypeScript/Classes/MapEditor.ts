@@ -1,7 +1,9 @@
 import { IRenderable } from "../Interfaces/interfaces";
-import { LevelSize, SpriteCategory, Sprites } from "../Enums/enums";
+import { SpriteCategory } from "../Enums/SpriteCategory";
+import { Sprites } from "../Enums/Sprites";
+import { LevelSize } from "../Enums/LevelSize";
 import { BasicRendering } from "./BasicRendering";
-import { SpriteChanger } from "../Enums/enums";
+import { SpriteChanger } from "../Enums/SpriteChanger";
 import { Sprite, Vector2 } from "./Structs";
 import { Game } from "./Game";
 import { UISelectionMenu } from "./UISelectionMenu";

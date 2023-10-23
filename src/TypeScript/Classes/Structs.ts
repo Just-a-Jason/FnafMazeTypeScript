@@ -14,7 +14,7 @@ export class Vector2 {
     }
 }
 
-import { SpriteCategory } from "../Enums/enums";
+import { SpriteCategory } from "../Enums/SpriteCategory";
 
 export class Sprite {
     public image: HTMLImageElement;
@@ -37,6 +37,7 @@ export class Sprite {
             case SpriteCategory.SolidTile: return 'Solid tiles';
             case SpriteCategory.CollectableItem: return 'Collectable items';
             case SpriteCategory.PowerUp: return 'Powerups';
+            case SpriteCategory.Decoration: return "Decorations";
             default: return 'Other';
         }
     }

@@ -4,7 +4,7 @@ import { CharacterBase } from "./CharaterBase";
 import { Sprite, Vector2} from "./Structs";
 import { RandInt } from "../Scripts/utils";
 import { GameObject } from "./GameObject";
-import { Sprites } from "../Enums/enums";
+import { Sprites } from "../Enums/Sprites";
 import { Player } from "./Player";
 import { Game } from "./Game";
 

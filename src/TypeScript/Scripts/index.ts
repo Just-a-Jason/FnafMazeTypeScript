@@ -1,4 +1,5 @@
-import { ControllerMode, SpriteChanger } from "../Enums/enums";
+import { SpriteChanger } from "../Enums/SpriteChanger";
+import { ControllerMode } from "../Enums/ControllerMode";
 import { Vector2 } from "../Classes/Structs";
 import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";

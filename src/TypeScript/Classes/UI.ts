@@ -4,7 +4,7 @@ import { Clamp } from "../Scripts/utils";
 import { Vector2 } from "./Structs";
 import { Player } from "./Player";
 import { Game } from "./Game";
-import { FillAligment } from "../Enums/enums";
+import { FillAligment } from "../Enums/FillAligment";
 
 export class UI implements IRenderable { 
     private player:Nullable<Player> = null;
