@@ -25,7 +25,8 @@ export const Sprites = {
     Mask:new Sprite('Mask', SpriteCategory.PowerUp, 'Images/Sprites/Powerups/mask.webp',70,70),
     FlashLight:new Sprite('FlashLight', SpriteCategory.PowerUp, 'Images/Sprites/Powerups/flashlight.webp',70,70),
     PhoneCall:new Sprite('PhoneCall', SpriteCategory.PowerUp, 'Images/Sprites/Powerups/phone call.webp',70,70),
-    PinkBlock: new Sprite('PinkBlock', SpriteCategory.CustomTile, 'Images/Sprites/Custom Tiles/pink.webp',70,70)
+    PinkBlock: new Sprite('PinkBlock', SpriteCategory.CustomTile, 'Images/Sprites/Custom Tiles/pink.webp',70,70),
+    PizzeriaWall: new Sprite('PizzeriaWall', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/PizzeriaWall.webp', 70,70)
 };
 
 export const enum ControllerMode {
