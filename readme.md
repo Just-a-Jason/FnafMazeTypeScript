@@ -16,6 +16,9 @@ I want to show you my game called: "The fnaf maze" it's build using:
 
 ![DebugMode](https://github.com/Just-a-Jason/FnafMazeTypeScript/assets/88512392/10ab2bc5-3c6f-4836-b248-498c1ebc2896)
 
+### New Graphics!
+#### By @denis
+![new graphics](https://github.com/Just-a-Jason/FnafMazeTypeScript/assets/88512392/a6f9ff48-9d0d-4e78-b6d3-8813952520f4)
 ### What I have to do?
 
 - [x] Create DebugMode.
