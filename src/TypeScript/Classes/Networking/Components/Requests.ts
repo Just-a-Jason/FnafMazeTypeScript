@@ -7,10 +7,11 @@ class Requests {
         return null;
     }
 
-    private async makeRequest(url:string, method='get'):Promise<string> {
+    private async makeRequest(url:string, method:FetchMethod='GET'):Promise<string> {
         await fetch(url, {
             headers: {
-                "method": "get"
+                "method": method,
+                "Content-Type": "application/json",
             }
         })
     }
