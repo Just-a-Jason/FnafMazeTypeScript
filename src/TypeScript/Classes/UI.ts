@@ -13,7 +13,7 @@ export class UI implements IRenderable {
     public constructor(private game:Game) {}
 
     public render(ctx:CanvasRenderingContext2D):void {
-        if (!this.player) this.player = this.game.FindObjectByType(Player);
+        if (!this.player) this.player = this.game.findObjectByType(Player);
         else this.DrawPlayerUI(ctx);
         this.game.mainCamera.render(ctx);
         this.DrawFpsCounter(ctx);

@@ -23,15 +23,15 @@ export class Game {
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
-    public AddObject(obj:IRenderable) {
+    public addObject(obj:IRenderable) {
         this.renderable.push(obj);
     }
 
-    public Render(ctx:CanvasRenderingContext2D):void  {
+    public render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.mainCamera.FollowPosition();
         this.mapEditor.render(ctx);
-        this.ProcessAI();
+        this.processAI();
 
         this.renderable.forEach((obj:IRenderable) => {
             obj.render(ctx);
@@ -39,14 +39,14 @@ export class Game {
         this.UI?.render(ctx);
     }
 
-    private ProcessAI():void {
-        this.CalculateDeltaTime();
+    private processAI():void {
+        this.calculateDeltaTime();
         this.renderable.forEach((renderable:IRenderable) => {
             (renderable as CharacterBase).Main?.();
         });
     }
 
-    public CheckForCollision(objectA:ICollideable, objectB:ICollideable): [collision:boolean, distance:number, sumOfRadii:number,objectDistance:Vector2] {
+    public checkForCollision(objectA:ICollideable, objectB:ICollideable): [collision:boolean, distance:number, sumOfRadii:number,objectDistance:Vector2] {
        const objectDistance: Vector2 = Vector2.Distance(Vector2.Add(objectA.collisionPosition, (objectA as GameObject).position), Vector2.Add(objectB.collisionPosition, (objectB as GameObject).position));
        
        const distance:number = Math.hypot(objectDistance.y, objectDistance.x);
@@ -55,7 +55,7 @@ export class Game {
        return [distance < sumOfRadii, distance, sumOfRadii, objectDistance];
     }
 
-    public FindObjectByReferenceName(name:string): Nullable<GameObject> {
+    public findObjectByReferenceName(name:string): Nullable<GameObject> {
             for (let obj of this.renderable) {
                 if ((obj instanceof(GameObject))) {
                     if((obj as GameObject).referenceName === name) {
@@ -66,7 +66,7 @@ export class Game {
             return null;
     } 
 
-    public FindObjectsByReferenceName(name:string): Array<GameObject> {
+    public findObjectsByReferenceName(name:string): Array<GameObject> {
         const objects: Array<GameObject> = new Array<GameObject>();
         
         for (let obj of this.renderable) {
@@ -77,7 +77,7 @@ export class Game {
         return objects;
     } 
 
-    public FindObjectByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<T> {
+    public findObjectByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<T> {
         for (const obj of this.renderable) {
             if(obj === ignoreObject) continue;
             if (obj instanceof targetType) {
@@ -89,7 +89,7 @@ export class Game {
         return null;
     }
 
-    public FindObjectsByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<Array<T>> {
+    public findObjectsByType<T>(targetType: new (...args: Array<any>) => T, ignoreObject?:T):Nullable<Array<T>> {
         const found: Array<T> = new Array<T>();
         for (const obj of this.renderable) {
             if (obj === ignoreObject) continue;
@@ -102,7 +102,7 @@ export class Game {
         return (found.length > 0) ? found : null;
     }
 
-    private CalculateDeltaTime():void {
+    private calculateDeltaTime():void {
         const currentTime:number = performance.now();
         const deltaTime:number = currentTime - this.lastFrameTime;
         this.DeltaTime = deltaTime / 1000;

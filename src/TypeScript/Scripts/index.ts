@@ -6,11 +6,14 @@ import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
 import { Sprites } from "../Enums/Sprites";
+import { AssetsLoader } from "../Classes/Networking/AssetsLoader";
+import { ArrayHelper } from "../Classes/Helpers/ArrayHelper";
+
+
 
 window.addEventListener('load', () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
     music.loop = true;
-    console.log(JSON.stringify(Sprites));
     
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
@@ -19,6 +22,10 @@ window.addEventListener('load', () => {
     
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
+
+    AssetsLoader.loadSprites().then(json =>  {
+        
+    });
 
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode === ControllerMode.Mouse) {
@@ -52,7 +59,7 @@ window.addEventListener('load', () => {
     });
 
     function GameLoop():void {
-        game.Render(context2d);
+        game.render(context2d);
         requestAnimationFrame(GameLoop);
     }
     

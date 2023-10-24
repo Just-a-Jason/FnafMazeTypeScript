@@ -79,7 +79,7 @@ export class Springtrap extends WanderableCharacter implements IChaser {
     public Chase():void {
         this.speed = (!this.isChaseing) ? this.normalSpeed : this.chaseSpeed!;
         if (!this.target) {
-            const potencialTargets = this.game.FindObjectsByType<IMovable>(GameObject, this);
+            const potencialTargets = this.game.findObjectsByType<IMovable>(GameObject, this);
             if (potencialTargets) {
                 for (const target of potencialTargets) {
                     const distanceBetween:Vector2 = Vector2.Distance(this.position, target.position);
