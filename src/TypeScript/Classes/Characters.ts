@@ -1,7 +1,9 @@
-import { IChaser, IMovable } from "../Interfaces/interfaces";
+import { IChaser } from "../Interfaces/IChaser";
+import { IMovable } from "../Interfaces/IMovable";
 import { BasicRendering } from "./BasicRendering";
 import { CharacterBase } from "./CharaterBase";
-import { Sprite, Vector2} from "./Structs";
+import { Sprite } from "../Structs/Sprite";
+import { Vector2 } from "../Structs/Vector2";
 import { RandInt } from "../Scripts/utils";
 import { GameObject } from "./GameObject";
 import { Sprites } from "../Enums/Sprites";

@@ -1,5 +1,6 @@
 import { FillAligment } from "../Enums/FillAligment";
-import { Sprite, Vector2 } from "./Structs";
+import { Sprite } from "../Structs/Sprite";
+import { Vector2 } from "../Structs/Vector2";
 
 
 /**

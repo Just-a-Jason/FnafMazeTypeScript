@@ -1,5 +1,5 @@
 import { SpriteCategory } from "./SpriteCategory";
-import { Sprite } from "../Classes/Structs";
+import { Sprite } from "../Structs/Sprite";
 
 
 export const Sprites = {
@@ -15,7 +15,6 @@ export const Sprites = {
     Guard: new Sprite('Guard', SpriteCategory.PlayerSprite, 'Images/Sprites/Player/Guard.webp', 70, 70),
     Wall: new Sprite('Wall', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/Wall.webp', 70, 70),
     DashedBG: new Sprite('DashedBG', SpriteCategory.GameAsset, 'Images/Assets/dashedbg.png', 40, 40),
-    Coin: new Sprite('Coin', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/coin.webp', 20, 20),
     Cherry: new Sprite('Cherry', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/cherry.webp', 70, 70),
     Mask: new Sprite('Mask', SpriteCategory.PowerUp, 'Images/Sprites/Powerups/mask.webp', 70, 70),
     FlashLight: new Sprite('FlashLight', SpriteCategory.PowerUp, 'Images/Sprites/Powerups/flashlight.webp', 70, 70),
@@ -30,5 +29,6 @@ export const Sprites = {
     Hamburger:new Sprite('Hamburger', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/hamburger.webp', 70,70),
     PizzaSlice:new Sprite('PizzaSlice', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/pizza-slice.webp', 70,70),
     SoftDrink:new Sprite('SoftDrink', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/soft-drink.webp', 70,70),
-    BlankWall:new Sprite('BlankWall', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/BlankWall.webp', 70,70)
+    BlankWall:new Sprite('BlankWall', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/BlankWall.webp', 70,70),
+    Lolipop: new Sprite('Lolipop', SpriteCategory.CollectableItem, 'Images/Sprites/Solid Tiles/lolipop.webp', 70,70)
 };

@@ -1,9 +1,10 @@
-import { ICollideable, IRenderable } from "../Interfaces/interfaces";
+import { IRenderable } from "../Interfaces/IRenderable";
+import { ICollideable } from "../Interfaces/ICollideable";
 import { CharacterBase } from "./CharaterBase";
 import { LevelSize } from "../Enums/LevelSize";
 import { GameObject } from "./GameObject";
 import { MapEditor } from "./MapEditor";
-import { Vector2 } from "./Structs";
+import { Vector2 } from "../Structs/Vector2";
 import { Camera } from "./Camera";
 import { UISelectionMenu } from "./UISelectionMenu";
 

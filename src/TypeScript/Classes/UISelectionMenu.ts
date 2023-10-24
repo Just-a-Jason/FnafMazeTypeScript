@@ -1,7 +1,8 @@
-import { IDebuggable, IUICategoryButton } from "../Interfaces/interfaces";
+import { IUICategoryButton } from "../Interfaces/IUICategoryButton";
+import { IDebuggable } from "../Interfaces/IDebuggable";
 import { UIElementFactory } from "./UIElementFactory";
 import { MapEditor } from "./MapEditor";
-import { Sprite } from "./Structs";
+import { Sprite } from "../Structs/Sprite";
 
 export class UISelectionMenu implements IDebuggable {
     private categorisedMenuItems: Map<string, Array<Sprite>> = new Map<string, Array<Sprite>>();

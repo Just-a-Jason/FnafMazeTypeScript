@@ -2,7 +2,8 @@ import { Sprites } from "../Enums/Sprites";
 import { Clamp } from "../Scripts/utils";
 import { BasicRendering } from "./BasicRendering";
 import { GameObject } from "./GameObject";
-import { Sprite, Vector2 } from "./Structs";
+import { Sprite } from "../Structs/Sprite";
+import { Vector2 } from "../Structs/Vector2";
 
 const chaseMusic:HTMLAudioElement = new Audio('Sounds/Music/Chase.ogg');
 const stompSound:HTMLAudioElement = new Audio('Sounds/Music/Stomp.ogg');

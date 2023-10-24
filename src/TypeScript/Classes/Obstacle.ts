@@ -1,7 +1,7 @@
 import { Sprites } from "../Enums/Sprites";
 import { BasicRendering } from "./BasicRendering";
 import { GameObject } from "./GameObject";
-import { Sprite } from "./Structs";
+import { Sprite } from "../Structs/Sprite";
 
 export class Obstacle extends GameObject {
     public sprite: Sprite = Sprites.Wall;

@@ -1,5 +1,5 @@
-import { IUICategoryButton } from "../Interfaces/interfaces";
-import { Sprite } from "./Structs";
+import { IUICategoryButton } from "../Interfaces/IUICategoryButton";
+import { Sprite } from "../Structs/Sprite";
 
 export class UIElementFactory {
     public static CreateCategoryButton(categoryName:string):IUICategoryButton {

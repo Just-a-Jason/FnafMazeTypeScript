@@ -1,6 +1,9 @@
-import { ICollideable, IGameObject, IRenderable } from "../Interfaces/interfaces";
+import { IRenderable } from "../Interfaces/IRenderable";
+import { ICollideable } from "../Interfaces/ICollideable";
+import { IGameObject } from "../Interfaces/IGameObject";
 import { BasicRendering } from "./BasicRendering";
-import { Sprite, Vector2 } from "./Structs";
+import { Sprite } from "../Structs/Sprite";
+import { Vector2 } from "../Structs/Vector2";
 import { Game } from "./Game";
 
 export class GameObject implements IGameObject, IRenderable, ICollideable {

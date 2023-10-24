@@ -1,7 +1,7 @@
-import { IRenderable } from "../Interfaces/interfaces";
+import { IRenderable } from "../Interfaces/IRenderable";
 import { BasicRendering } from "./BasicRendering";
 import { Clamp } from "../Scripts/utils";
-import { Vector2 } from "./Structs";
+import { Vector2 } from "../Structs/Vector2";
 import { Player } from "./Player";
 import { Game } from "./Game";
 import { FillAligment } from "../Enums/FillAligment";

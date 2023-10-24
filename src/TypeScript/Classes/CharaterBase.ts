@@ -1,5 +1,6 @@
-import { ICharacter } from "../Interfaces/interfaces";
-import { Sprite, Vector2 } from "./Structs";
+import { ICharacter } from "../Interfaces/ICharacter";
+import { Sprite } from "../Structs/Sprite";
+import { Vector2 } from "../Structs/Vector2";
 import { GameObject } from "./GameObject";
 
 /**

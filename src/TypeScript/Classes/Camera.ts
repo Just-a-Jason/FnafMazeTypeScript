@@ -1,6 +1,7 @@
-import { IMovable, IRenderable } from "../Interfaces/interfaces";
+import { IMovable } from "../Interfaces/IMovable";
+import { IRenderable } from "../Interfaces/IRenderable";
 import { BasicRendering } from "./BasicRendering";
-import { Vector2 } from "./Structs";
+import { Vector2 } from "../Structs/Vector2";
 import { Game } from "./Game";
 
 /**
