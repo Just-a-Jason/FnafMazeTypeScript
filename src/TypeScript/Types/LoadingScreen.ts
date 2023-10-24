@@ -1,0 +1,1 @@
+type LoadingScreen = HTMLDivElement;

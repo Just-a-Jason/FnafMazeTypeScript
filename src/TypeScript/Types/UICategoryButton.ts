@@ -1,0 +1,1 @@
+type UICategoryButton = HTMLDivElement;
