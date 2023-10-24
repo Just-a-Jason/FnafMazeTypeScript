@@ -1,4 +1,3 @@
-
 export interface ICharacter {
     Main(): void;
     normalSpeed: number;
