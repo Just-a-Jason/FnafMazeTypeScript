@@ -30,5 +30,6 @@ export const Sprites = {
     PizzaSlice:new Sprite('PizzaSlice', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/pizza-slice.webp', 70,70),
     SoftDrink:new Sprite('SoftDrink', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/soft-drink.webp', 70,70),
     BlankWall:new Sprite('BlankWall', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/BlankWall.webp', 70,70),
-    Lolipop: new Sprite('Lolipop', SpriteCategory.CollectableItem, 'Images/Sprites/Solid Tiles/lolipop.webp', 70,70)
+    Lolipop: new Sprite('Lolipop', SpriteCategory.CollectableItem, 'Images/Sprites/Collectables/lolipop.webp', 70,70),
+    Door: new Sprite('Door', SpriteCategory.SolidTile, 'Images/Sprites/Solid Tiles/door.webp', 70, 70)
 };
