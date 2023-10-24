@@ -12,10 +12,10 @@ export class UI implements IRenderable {
 
     public constructor(private game:Game) {}
 
-    public Render(ctx:CanvasRenderingContext2D):void {
+    public render(ctx:CanvasRenderingContext2D):void {
         if (!this.player) this.player = this.game.FindObjectByType(Player);
         else this.DrawPlayerUI(ctx);
-        this.game.mainCamera.Render(ctx);
+        this.game.mainCamera.render(ctx);
         this.DrawFpsCounter(ctx);
     }
     
@@ -26,8 +26,8 @@ export class UI implements IRenderable {
             const fontSize = 20;
 
             const textPosition:Vector2 = new Vector2(this.game.canvasWidth - backgroundSize.x*0.5 + fontSize*0.5, backgroundSize.y *0.5 - fontSize*0.5);
-            BasicRendering.DrawRectangle(ctx, backgroundPosition, backgroundSize.x, backgroundSize.y,'#000');
-            BasicRendering.DrawText(ctx,`FPS: ${this.game.fps}`,textPosition, 80,'#fff', `${fontSize}px 'Press Start 2P', cursive`);
+            BasicRendering.drawRectangle(ctx, backgroundPosition, backgroundSize.x, backgroundSize.y,'#000');
+            BasicRendering.drawText(ctx,`FPS: ${this.game.fps}`,textPosition, 80,'#fff', `${fontSize}px 'Press Start 2P', cursive`);
         }
         this.currentValue = Clamp(this.currentValue+this.game.DeltaTime*100, 0, 200);
     }

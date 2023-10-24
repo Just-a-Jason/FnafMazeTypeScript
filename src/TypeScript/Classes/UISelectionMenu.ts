@@ -20,7 +20,7 @@ export class UISelectionMenu implements IDebuggable {
 
         this.ReloadMenu();
         if (!UISelectionMenu.Instance) UISelectionMenu.Instance = this;
-        MapEditor.Instance?.SetTileButtonAsActive();
+        MapEditor.Instance?.setTileButtonAsActive();
         document.querySelector('.categoryList')?.classList.add('categoryListActive');
     }
     
@@ -55,7 +55,7 @@ export class UISelectionMenu implements IDebuggable {
                         
                         const spriteName:string = target.getAttribute('tile-meta-name')!;
 
-                        MapEditor.Instance?.SetSprite(spriteName);
+                        MapEditor.Instance?.setSprite(spriteName);
 
                         target.classList.add('selectedTile');
 

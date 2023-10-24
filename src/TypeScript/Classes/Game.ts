@@ -19,7 +19,7 @@ export class Game {
     public DeltaTime:number = 1;
     public fps = 0;
 
-    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.GetSpritesArray());
+    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.getSpritesArray());
     
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
@@ -30,13 +30,13 @@ export class Game {
     public Render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.mainCamera.FollowPosition();
-        this.mapEditor.Render(ctx);
+        this.mapEditor.render(ctx);
         this.ProcessAI();
 
         this.renderable.forEach((obj:IRenderable) => {
-            obj.Render(ctx);
+            obj.render(ctx);
         });
-        this.UI?.Render(ctx);
+        this.UI?.render(ctx);
     }
 
     private ProcessAI():void {

@@ -1,3 +1,3 @@
 export interface IRenderable {
-    Render(ctx: CanvasRenderingContext2D): void;
+    render(ctx: CanvasRenderingContext2D): void;
 }

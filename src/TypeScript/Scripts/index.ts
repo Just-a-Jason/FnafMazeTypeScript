@@ -5,10 +5,12 @@ import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
+import { Sprites } from "../Enums/Sprites";
 
 window.addEventListener('load', () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
     music.loop = true;
+    console.log(JSON.stringify(Sprites));
     
     const canvas: HTMLCanvasElement = document.querySelector('canvas#game-canvas')!;
     const context2d: CanvasRenderingContext2D = canvas.getContext('2d')!;
@@ -43,10 +45,10 @@ window.addEventListener('load', () => {
         if (!game.editMode) return;
 
         const mapEditor = game.mapEditor;
-        mapEditor.CalculateGridIndex();
+        mapEditor.calculateGridIndex();
 
-        if (e.button === 0)  mapEditor.PlaceSprite();
-        if (e.button === 2)  mapEditor.RemoveSprite();
+        if (e.button === 0)  mapEditor.placeSprite();
+        if (e.button === 2)  mapEditor.removeSprite();
     });
 
     function GameLoop():void {
@@ -82,8 +84,8 @@ window.addEventListener('load', () => {
                 case 'a': targetPosition.x += -moveSpeed; break;
                 case 'd': targetPosition.x += moveSpeed; break;
                 
-                case 'q': game.mapEditor.ChangeSprite(SpriteChanger.Previous); break;
-                case 'e': game.mapEditor.ChangeSprite(SpriteChanger.Next); break;
+                case 'q': game.mapEditor.changeSprite(SpriteChanger.Previous); break;
+                case 'e': game.mapEditor.changeSprite(SpriteChanger.Next); break;
             }
         }
     });
@@ -122,14 +124,14 @@ window.addEventListener('load', () => {
                 
                 // I can also use 2D array but it's more complex to save later so i use one-dimensional array. 
                 // Optimal version to run map index mapping. (runs only if player moved cursor position)
-                if (moveVector.x !== 0 || moveVector.y !== 0) mapEditor.CalculateGridIndex(); 
+                if (moveVector.x !== 0 || moveVector.y !== 0) mapEditor.calculateGridIndex(); 
                 
-                if (gamepad.buttons[0].pressed) mapEditor.PlaceSprite(); // X button (PS4)
-                if (gamepad.buttons[1].pressed && !game.debug) mapEditor.RemoveSprite(); // Circle button (PS4)
+                if (gamepad.buttons[0].pressed) mapEditor.placeSprite(); // X button (PS4)
+                if (gamepad.buttons[1].pressed && !game.debug) mapEditor.removeSprite(); // Circle button (PS4)
                 
                 // L1 button (PS4)
                 if (gamepad.buttons[4].pressed) {
-                    mapEditor.ChangeSprite(SpriteChanger.Previous);
+                    mapEditor.changeSprite(SpriteChanger.Previous);
                     gamepad.vibrationActuator?.playEffect('dual-rumble', {
                         duration: 100,
                         weakMagnitude: 0.7
@@ -137,7 +139,7 @@ window.addEventListener('load', () => {
                 } 
                 // R1 button (PS4)
                 if (gamepad.buttons[5].pressed) {
-                    mapEditor.ChangeSprite(SpriteChanger.Next);
+                    mapEditor.changeSprite(SpriteChanger.Next);
                     gamepad.vibrationActuator?.playEffect('dual-rumble', {
                         duration: 100,
                         weakMagnitude: 0.7  

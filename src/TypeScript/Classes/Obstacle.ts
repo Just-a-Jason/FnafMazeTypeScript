@@ -5,8 +5,8 @@ import { Sprite } from "../Structs/Sprite";
 
 export class Obstacle extends GameObject {
     public sprite: Sprite = Sprites.Wall;
-    public override Render(ctx: CanvasRenderingContext2D):void {
-        BasicRendering.DrawSprite(ctx,this.position,this.sprite);
+    public override render(ctx: CanvasRenderingContext2D):void {
+        BasicRendering.drawSprite(ctx,this.position,this.sprite);
         BasicRendering.DrawCircle(ctx,this.position,this.collisionRadius, '#f00', 0.5);
     }
 

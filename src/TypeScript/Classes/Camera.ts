@@ -30,7 +30,7 @@ export class Camera implements IMovable, IRenderable {
         this.id = Camera.nextId++;
     }
     
-    public Render(ctx:CanvasRenderingContext2D):void {
+    public render(ctx:CanvasRenderingContext2D):void {
         if (!this.game.debug) return;
 
         // Calcuculate camera nameText position:
@@ -39,10 +39,10 @@ export class Camera implements IMovable, IRenderable {
         const textPosition:Vector2 = new Vector2(fontSize,this.game.canvasHeight - fontSize);
         
         const position:Vector2 = new Vector2(this.game.canvasWidth*0.5, this.game.canvasHeight*0.5);
-        BasicRendering.DrawRectangle(ctx,position,this.game.canvasWidth, this.game.canvasHeight, '#f00',0.1);
+        BasicRendering.drawRectangle(ctx,position,this.game.canvasWidth, this.game.canvasHeight, '#f00',0.1);
         BasicRendering.DrawStrokeRect(ctx,position,'#fff',20,this.game.canvasWidth,this.game.canvasHeight,0.5);
         BasicRendering.DrawStrokeRect(ctx,position,'#f00',5,this.game.canvasWidth*0.2, this.game.canvasHeight*0.2,0.5);
-        BasicRendering.DrawText(ctx,this.cameraName,textPosition,maxWidth,'#fff',`${fontSize}px 'Press Start 2P', cursive`);
+        BasicRendering.drawText(ctx,this.cameraName,textPosition,maxWidth,'#fff',`${fontSize}px 'Press Start 2P', cursive`);
     }
 
     public FollowTarget(target:IMovable):void {

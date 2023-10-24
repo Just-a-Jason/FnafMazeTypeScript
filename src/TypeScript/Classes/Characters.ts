@@ -39,8 +39,8 @@ export abstract class WanderableCharacter extends CharacterBase {
             this.targetPosition = new Vector2(RandInt(this.game.canvasWidth), RandInt(this.game.canvasHeight));
         }
     }
-    public override Render(ctx:CanvasRenderingContext2D):void {
-        super.Render(ctx);
+    public override render(ctx:CanvasRenderingContext2D):void {
+        super.render(ctx);
         if (this.game.debug) {
             if (this.targetPosition) {
                 BasicRendering.DrawCircle(ctx,this.targetPosition,30,'#333',0.5);
@@ -52,7 +52,7 @@ export abstract class WanderableCharacter extends CharacterBase {
             }
             BasicRendering.DrawCircle(ctx,this.collisionPosition,this.collisionRadius,'#f00',0.5);
             if (this.sprite)
-            BasicRendering.DrawSprite(ctx,this.position, this.sprite);
+            BasicRendering.drawSprite(ctx,this.position, this.sprite);
         }
     }
 }
@@ -114,8 +114,8 @@ export class Springtrap extends WanderableCharacter implements IChaser {
         }
     }
 
-    public override Render(ctx:CanvasRenderingContext2D):void {
-        super.Render(ctx);
+    public override render(ctx:CanvasRenderingContext2D):void {
+        super.render(ctx);
         if (this.game.debug) BasicRendering.DrawCircle(ctx,this.position,this.maxEscapeZone,'#ff0',0.2);
     }
 }
