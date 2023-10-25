@@ -8,7 +8,6 @@ function Init():void {
     const baner: HTMLImageElement = document.createElement('img');
     const ls:HTMLDivElement = document.createElement('div');
 
-    baner.classList.add("loading-baner");
     baner.src = BANER_PATH;
     baner.alt = 'baner';
 
@@ -29,7 +28,7 @@ function Init():void {
     LoadingScreen_Instance = ls;
 
     document.addEventListener('DOMContentLoaded', (e:Event) => {
-        console.info('Page loaded!');
+        console.log('%c Page loaded!', 'color: #f00;');
         setTimeout(() => {
             DoneLoading();
         }, 200);

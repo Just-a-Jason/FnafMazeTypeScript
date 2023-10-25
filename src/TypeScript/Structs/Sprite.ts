@@ -9,6 +9,7 @@ export class Sprite {
         this.path = 'Images/'+this.path;
         const i: HTMLImageElement = new Image();
 
+        i.src = this.path;
         i.onload = () => {
             this.image = i;
         };
