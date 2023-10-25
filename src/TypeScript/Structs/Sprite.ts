@@ -6,8 +6,8 @@ export class Sprite {
     public image: HTMLImageElement;
 
     public constructor(public readonly name: string, public readonly category: SpriteCategory, private readonly path: string, public readonly width: number, public readonly height: number) {
+        this.path = 'Images/'+this.path;
         const i: HTMLImageElement = new Image();
-        i.src = path;
 
         i.onload = () => {
             this.image = i;

@@ -1,202 +1,200 @@
 
 
 {   
-    "sprites": [
-
-    
+    "sprites": [    
     {
         "name": "NightmareFoxy",
         "category": 0,
-        "path": "Images/Sprites/Characters/NightmareFoxy.webp",
+        "path": "Sprites/Characters/NightmareFoxy.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "GoldenFreddy",
         "category": 0,
-        "path": "Images/Sprites/Characters/GoldenFreddy.webp",
+        "path": "Sprites/Characters/GoldenFreddy.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Springtrap",
         "category": 0,
-        "path": "Images/Sprites/Characters/Springtrap.webp",
+        "path": "Sprites/Characters/Springtrap.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Bonnie",
         "category": 0,
-        "path": "Images/Sprites/Characters/Bonnie.webp",
+        "path": "Sprites/Characters/Bonnie.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Cupcake",
         "category": 0,
-        "path": "Images/Sprites/Characters/Cupcake.webp",
+        "path": "Sprites/Characters/Cupcake.webp",
         "width": 50,
         "height": 50
     },
     {
         "name": "William",
         "category": 0,
-        "path": "Images/Sprites/Characters/William.webp",
+        "path": "Sprites/Characters/William.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Freddy",
         "category": 0,
-        "path": "Images/Sprites/Characters/Freddy.webp",
+        "path": "Sprites/Characters/Freddy.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Chica",
         "category": 0,
-        "path": "Images/Sprites/Characters/Chica.webp",
+        "path": "Sprites/Characters/Chica.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Foxy",
         "category": 0,
-        "path": "Images/Sprites/Characters/Foxy.webp",
+        "path": "Sprites/Characters/Foxy.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Guard",
         "category": 2,
-        "path": "Images/Sprites/Player/Guard.webp",
+        "path": "Sprites/Player/Guard.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Wall",
         "category": 1,
-        "path": "Images/Sprites/Solid Tiles/Wall.webp",
+        "path": "Sprites/Solid Tiles/Wall.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "DashedBG",
         "category": 3,
-        "path": "Images/Assets/dashedbg.png",
+        "path": "Assets/dashedbg.png",
         "width": 40,
         "height": 40
     },
     {
         "name": "Cherry",
         "category": 6,
-        "path": "Images/Sprites/Collectables/cherry.webp",
+        "path": "Sprites/Collectables/cherry.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Mask",
         "category": 5,
-        "path": "Images/Sprites/Powerups/mask.webp",
+        "path": "Sprites/Powerups/mask.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "FlashLight",
         "category": 5,
-        "path": "Images/Sprites/Powerups/flashlight.webp",
+        "path": "Sprites/Powerups/flashlight.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "PhoneCall",
         "category": 5,
-        "path": "Images/Sprites/Powerups/phone call.webp",
+        "path": "Sprites/Powerups/phone call.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "PinkBlock",
         "category": 4,
-        "path": "Images/Sprites/Custom Tiles/pink.webp",
+        "path": "Sprites/Custom Tiles/pink.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "PizzeriaWall",
         "category": 1,
-        "path": "Images/Sprites/Solid Tiles/PizzeriaWall.webp",
+        "path": "Sprites/Solid Tiles/PizzeriaWall.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "robotPice1",
         "category": 7,
-        "path": "Images/Sprites/Decorations/robotPice1.webp",
+        "path": "Sprites/Decorations/robotPice1.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "robotPice2",
         "category": 7,
-        "path": "Images/Sprites/Decorations/robotPice2.webp",
+        "path": "Sprites/Decorations/robotPice2.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "robotPice3",
         "category": 7,
-        "path": "Images/Sprites/Decorations/robotPice3.webp",
+        "path": "Sprites/Decorations/robotPice3.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "robotPice4",
         "category": 7,
-        "path": "Images/Sprites/Decorations/robotPice4.webp",
+        "path": "Sprites/Decorations/robotPice4.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "FamilyPizza",
         "category": 6,
-        "path": "Images/Sprites/Collectables/full-pizza.webp",
+        "path": "Sprites/Collectables/full-pizza.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Hamburger",
         "category": 6,
-        "path": "Images/Sprites/Collectables/hamburger.webp",
+        "path": "Sprites/Collectables/hamburger.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "PizzaSlice",
         "category": 6,
-        "path": "Images/Sprites/Collectables/pizza-slice.webp",
+        "path": "Sprites/Collectables/pizza-slice.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "SoftDrink",
         "category": 6,
-        "path": "Images/Sprites/Collectables/soft-drink.webp",
+        "path": "Sprites/Collectables/soft-drink.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "BlankWall",
         "category": 1,
-        "path": "Images/Sprites/Solid Tiles/BlankWall.webp",
+        "path": "Sprites/Solid Tiles/BlankWall.webp",
         "width": 70,
         "height": 70
     },
     {
         "name": "Lolipop",
         "category": 6,
-        "path": "Images/Sprites/Collectables/lolipop.webp",
+        "path": "Sprites/Collectables/lolipop.webp",
         "width": 70,
         "height": 70
     }

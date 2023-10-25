@@ -1,5 +1,4 @@
 import { SpriteCategory } from "../../Enums/SpriteCategory";
-import { ISprite } from "../../Interfaces/ISprite";
 import { Sprite } from "../../Structs/Sprite";
 
 export abstract class AssetsLoader {
@@ -24,6 +23,7 @@ export abstract class AssetsLoader {
             console.error(`AssetsLoader.makeRequest(url:string)\nCan't fetch: "${url}"`);
             return null;
         };
+        
         return response.json();
     }
 }
