@@ -1,4 +1,5 @@
 import { SpriteCategory } from "../Enums/SpriteCategory";
+import { ISprite } from "../Interfaces/ISprite";
 
 
 export class Sprite {
@@ -15,7 +16,7 @@ export class Sprite {
         this.image = i;
     }
 
-    public GetCategory(): string {
+    public getCategory(): string {
         switch (this.category) {
             case SpriteCategory.Character: return 'Characters';
             case SpriteCategory.PlayerSprite: return 'Player Sprites';
@@ -28,4 +29,7 @@ export class Sprite {
         }
     }
 
+    public static toSpriteObject(sprite:ISprite):Sprite {
+        return new Sprite(sprite.name, sprite.category, sprite.path, sprite.width, sprite.height);
+    };     
 }

@@ -6,8 +6,7 @@ import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
-
-let sprites = Array();
+import { Sprite } from "../Structs/Sprite";
 
 window.addEventListener('load', async () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
@@ -22,8 +21,8 @@ window.addEventListener('load', async () => {
     game.UI = new UI(game);
 
     // Wait until AssetsLoader finish loading sprites
-    await AssetsLoader.loadSprites().then(_bundle => sprites = _bundle['sprites']);
-
+    const sprites:Array<Sprite> = await AssetsLoader.loadSprites();
+    
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode === ControllerMode.Mouse) {
             const gridCellSize = game.mapEditor.levelSize * 0.5;

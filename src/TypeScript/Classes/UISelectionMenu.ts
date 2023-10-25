@@ -75,8 +75,8 @@ export class UISelectionMenu implements IDebuggable {
         this.categorisedMenuItems.clear();
 
         for (let sprite of this.sprites) {
-            const category:string = sprite.GetCategory();
-            if (!map.has(sprite.GetCategory())) map.set(sprite.GetCategory(), new Array<Sprite>());
+            const category:string = sprite.getCategory();
+            if (!map.has(sprite.getCategory())) map.set(sprite.getCategory(), new Array<Sprite>());
             
             map.get(category)?.push(sprite);
         }
