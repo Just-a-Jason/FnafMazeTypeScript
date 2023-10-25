@@ -1,14 +1,12 @@
 import { AssetsLoader } from "../Classes/Networking/AssetsLoader";
-import { SpriteChanger } from "../Enums/SpriteChanger";
 import { ControllerMode } from "../Enums/ControllerMode";
+import { SpriteChanger } from "../Enums/SpriteChanger";
 import { Vector2 } from "../Structs/Vector2";
 import { Sprite } from "../Structs/Sprite";
 import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
-import { MapEditor } from "../Classes/MapEditor";
-import { LevelSize } from "../Enums/LevelSize";
 
 window.addEventListener('load', async () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");

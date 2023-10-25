@@ -2,14 +2,14 @@ import { IRenderable } from "../Interfaces/IRenderable";
 import { ICollideable } from "../Interfaces/ICollideable";
 import { CharacterBase } from "./CharaterBase";
 import { LevelSize } from "../Enums/LevelSize";
+import { UISelectionMenu } from "./UISelectionMenu";
+import { Vector2 } from "../Structs/Vector2";
 import { GameObject } from "./GameObject";
 import { MapEditor } from "./MapEditor";
-import { Vector2 } from "../Structs/Vector2";
 import { Camera } from "./Camera";
-import { UISelectionMenu } from "./UISelectionMenu";
 
 export class Game {
-    public mapEditor: MapEditor = new MapEditor(this, LevelSize.Medium);
+    public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
     private lastFrameTime: number = performance.now();
     public mainCamera:Camera = new Camera(this, 'Main Camera');
     private renderable: Array<IRenderable> = new Array<IRenderable>();
