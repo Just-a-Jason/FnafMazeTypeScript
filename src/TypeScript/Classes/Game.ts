@@ -9,7 +9,7 @@ import { Camera } from "./Camera";
 import { UISelectionMenu } from "./UISelectionMenu";
 
 export class Game {
-    public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
+    public mapEditor: MapEditor = new MapEditor(this, LevelSize.Medium);
     private lastFrameTime: number = performance.now();
     public mainCamera:Camera = new Camera(this, 'Main Camera');
     private renderable: Array<IRenderable> = new Array<IRenderable>();
