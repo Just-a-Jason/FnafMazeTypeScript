@@ -45,7 +45,7 @@ export class Camera implements IMovable, IRenderable {
         BasicRendering.drawText(ctx,this.cameraName,textPosition,maxWidth,'#fff',`${fontSize}px 'Press Start 2P', cursive`);
     }
 
-    public FollowTarget(target:IMovable):void {
+    public followTarget(target:IMovable):void {
     }
     
     public FollowPosition() {

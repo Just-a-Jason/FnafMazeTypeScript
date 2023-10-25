@@ -2,11 +2,13 @@ import { AssetsLoader } from "../Classes/Networking/AssetsLoader";
 import { SpriteChanger } from "../Enums/SpriteChanger";
 import { ControllerMode } from "../Enums/ControllerMode";
 import { Vector2 } from "../Structs/Vector2";
+import { Sprite } from "../Structs/Sprite";
 import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
-import { Sprite } from "../Structs/Sprite";
+import { MapEditor } from "../Classes/MapEditor";
+import { LevelSize } from "../Enums/LevelSize";
 
 window.addEventListener('load', async () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
@@ -17,11 +19,12 @@ window.addEventListener('load', async () => {
     canvas.height = 800;
     canvas.width = 800;
     
+    // Wait until AssetsLoader finish loading sprites
+    const sprites:Array<Sprite> = await AssetsLoader.loadSprites();
+
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
 
-    // Wait until AssetsLoader finish loading sprites
-    const sprites:Array<Sprite> = await AssetsLoader.loadSprites();
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode === ControllerMode.Mouse) {
