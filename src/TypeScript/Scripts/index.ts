@@ -19,7 +19,6 @@ window.addEventListener('load', async () => {
     
     // Wait until AssetsLoader finish loading sprites
     const sprites:Array<Sprite> = await AssetsLoader.loadSprites();
-    console.log(sprites);
 
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
