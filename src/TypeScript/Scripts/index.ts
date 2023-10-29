@@ -19,6 +19,7 @@ window.addEventListener('load', async () => {
     
     // Wait until AssetsLoader finish loading sprites
     const sprites:Array<Sprite> = await AssetsLoader.loadSprites();
+    console.log(sprites);
 
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
@@ -97,9 +98,9 @@ window.addEventListener('load', async () => {
     // Handle mouse zooming
     canvas.addEventListener('wheel', (e:WheelEvent) => {
         // Main camera memory pointer (ref. reference)
-        const mainCamera:Camera = game.mainCamera;
-        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
-        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
+        // const mainCamera:Camera = game.mainCamera;
+        // const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
+        // mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
     });
 
     function DetectControllerPress() {

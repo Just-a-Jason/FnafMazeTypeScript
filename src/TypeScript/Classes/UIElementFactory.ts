@@ -2,7 +2,7 @@ import { IUICategoryButton } from "../Interfaces/IUICategoryButton";
 import { Sprite } from "../Structs/Sprite";
 
 export class UIElementFactory {
-    public static CreateCategoryButton(categoryName:string):IUICategoryButton {
+    public static createCategoryButton(categoryName:string):IUICategoryButton {
         
         const CategoryButton:UICategoryButton = document.createElement('div');
         CategoryButton.classList.add("categoryBtn");
@@ -44,7 +44,7 @@ export class UIElementFactory {
         };
     }
 
-    public static CreateTileSelectableButton(sprite:Sprite):UISelectableButton {
+    public static createTileSelectableButton(sprite:Sprite):UISelectableButton {
         const SelectableButton:UISelectableButton = document.createElement('div');
         const tileName:HTMLParagraphElement = document.createElement('p');
 

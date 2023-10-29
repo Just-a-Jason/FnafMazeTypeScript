@@ -29,7 +29,7 @@ export class Game {
 
     public render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-        this.mainCamera.FollowPosition();
+        this.mainCamera.followPosition();
         this.mapEditor.render(ctx);
         this.processAI();
 

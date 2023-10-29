@@ -6,7 +6,7 @@ body {
     font-family: 'VT323', monospace;
     justify-content: center;
     align-items: center;
-    background: #000;
+    background: #000;    
     min-height: 100vh;
     display: flex;
     margin: 0px;

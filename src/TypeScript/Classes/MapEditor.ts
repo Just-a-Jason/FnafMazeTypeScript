@@ -8,6 +8,7 @@ import { Vector2 } from "../Structs/Vector2";
 import { Sprites } from "../Enums/Sprites";
 import { Sprite } from "../Structs/Sprite";
 import { Game } from "./Game";
+import { Clamp } from "../Scripts/utils";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
@@ -22,6 +23,7 @@ export class MapEditor implements IRenderable {
     public static Instance:Nullable<MapEditor> = null;
     
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {
+        console.log(Sprites);
         this.initGrid(); 
         this.clickAudio.volume = 0.5;
         if (!MapEditor.Instance) MapEditor.Instance = this;
@@ -41,9 +43,19 @@ export class MapEditor implements IRenderable {
         return spriteArray;
     }
 
-    public setSprite(spriteName:string):void {
-        this.selectedSprite = Sprites[spriteName as keyof typeof Sprites];
+    public setSprite(name:string):void {
+        this.selectedSprite = Sprites[name as keyof typeof Sprites];
+        this.selectedSpriteIdx = this.getIndexOfSprite(name);
         this.clickAudio.play();
+    }
+
+    private getIndexOfSprite(key:string):number {
+        let i = 0;
+        for(const name of Object.keys(Sprites)) {
+            if (name === key) return i;
+            i++;
+        }
+        return -1;
     }
 
     public setTileButtonAsActive():void {
@@ -101,16 +113,16 @@ export class MapEditor implements IRenderable {
     }
 
     public changeSprite(change:SpriteChanger):void {
-        this.selectedSpriteIdx += change;
-        console.log(this.selectedSpriteIdx);
-        if (this.selectedSpriteIdx > this.loadedSprites.length-1) this.selectedSpriteIdx = 0;
-        if (this.selectedSpriteIdx < 0) this.selectedSpriteIdx = this.loadedSprites.length-1;
+        this.selectedSpriteIdx = Clamp(this.selectedSpriteIdx+change, 0, this.loadedSprites.length);
 
         const key:string = this.loadedSprites[this.selectedSpriteIdx];
         const sprite:Sprite = Sprites[key as keyof typeof Sprites];
+        if (sprite.category === SpriteCategory.GameAsset) {
+            this.changeSprite(SpriteChanger.Next);
+            return;
+        };
         this.selectedSprite = sprite;
         
-        //if (this.selectedSprite.category === SpriteCategory.GameAsset) this.changeSprite(SpriteChanger.Next);
         this.setTileButtonAsActive();
     }
 

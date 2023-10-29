@@ -35,14 +35,14 @@ export class UISelectionMenu implements IDebuggable {
             scrollView.innerHTML = '';
             
             for (let category of this.categorisedMenuItems.keys()) {
-                const ctgb:IUICategoryButton = UIElementFactory.CreateCategoryButton(category);
+                const ctgb:IUICategoryButton = UIElementFactory.createCategoryButton(category);
                 scrollView.appendChild(ctgb.object);
                 scrollView.appendChild(ctgb.itemList);
 
                 const sprites:Array<Sprite> = this.categorisedMenuItems.get(category)!;
 
                 for (const sprite of sprites) {
-                    const tsb:UISelectableButton = UIElementFactory.CreateTileSelectableButton(sprite);
+                    const tsb:UISelectableButton = UIElementFactory.createTileSelectableButton(sprite);
 
                     tsb.addEventListener('click', (e:MouseEvent) => {
                         // Small performance trick
@@ -58,7 +58,6 @@ export class UISelectionMenu implements IDebuggable {
                         MapEditor.Instance?.setSprite(spriteName);
 
                         target.classList.add('selectedTile');
-
                     });
 
                     this.selectableButtons.set(sprite, tsb);
