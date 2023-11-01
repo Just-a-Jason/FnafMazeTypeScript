@@ -1,5 +1,4 @@
 import { IRenderable } from "../Interfaces/IRenderable";
-import { SpriteCategory } from "../Enums/SpriteCategory";
 import { SpriteChanger } from "../Enums/SpriteChanger";
 import { UISelectionMenu } from "./UISelectionMenu";
 import { BasicRendering } from "./BasicRendering";
@@ -7,14 +6,14 @@ import { LevelSize } from "../Enums/LevelSize";
 import { Vector2 } from "../Structs/Vector2";
 import { Sprites } from "../Enums/Sprites";
 import { Sprite } from "../Structs/Sprite";
-import { Game } from "./Game";
 import { Clamp } from "../Scripts/utils";
+import { Game } from "./Game";
 
 export class MapEditor implements IRenderable {
     public cursorPosition:Vector2 = new Vector2(this.levelSize*0.5, this.levelSize*0.5);
     public grid:Nullable<Array<Nullable<Sprite>>> = new Array<Nullable<Sprite>>();
     
-    private loadedSprites: Array<string> = Object.keys(Sprites);
+    private sprites: Nullable<Array<Sprite>> = null;
     private selectedSpriteIdx = 0;
     private pattern:Array<string> = new Array<string>();
     private gridIndex:number = 0;
@@ -23,49 +22,47 @@ export class MapEditor implements IRenderable {
     public static Instance:Nullable<MapEditor> = null;
     
     public constructor(private game:Game, public levelSize:LevelSize, public rowMaxCells:number = Math.ceil(game.canvasWidth / levelSize)) {
-        console.log(Sprites);
         this.initGrid(); 
         this.clickAudio.volume = 0.5;
         if (!MapEditor.Instance) MapEditor.Instance = this;
     }
     
-    public selectedSprite:Sprite = Sprites[this.loadedSprites[0] as keyof typeof Sprites];
+    public selectedSprite:Nullable<Sprite> = null;
     
-    public getSpritesArray():Array<Sprite> {
-        let spriteArray = new Array<Sprite>();
+    public setSprites(sprites:Array<Sprite>) {
+        this.sprites = sprites;
+    }
 
-        for (const key of this.loadedSprites) {
-            const sprite:Sprite = Sprites[key as keyof typeof Sprites];
-
-            if(sprite.category === SpriteCategory.GameAsset) continue;
-            spriteArray.push(sprite);
-        }
-        return spriteArray;
+    public getSprites():Array<Sprite> {
+       return this.sprites!;
     }
 
     public setSprite(name:string):void {
-        this.selectedSprite = Sprites[name as keyof typeof Sprites];
         this.selectedSpriteIdx = this.getIndexOfSprite(name);
+        console.log(name, this.selectedSpriteIdx);
+        this.selectedSprite = this.sprites![this.selectedSpriteIdx];
         this.clickAudio.play();
     }
 
     private getIndexOfSprite(key:string):number {
         let i = 0;
-        for(const name of Object.keys(Sprites)) {
-            if (name === key) return i;
+        console.log('geting index');
+        console.log(this.sprites);
+        for(const sprite of this.sprites!) {
+            if (sprite.name === key) return i;
             i++;
         }
         return -1;
     }
 
     public setTileButtonAsActive():void {
+        if(this.selectedSprite === null) return;
         const other:Nullable<UISelectableButton> = document.querySelector('.selectedTile');
 
         other?.classList.remove('selectedTile');
 
-        const btn:UISelectableButton = UISelectionMenu.Instance?.selectableButtons.get(this.selectedSprite)!;
-        
-        btn.classList.add('selectedTile');
+        const btn:UISelectableButton = UISelectionMenu.Instance?.selectableButtons.get(this.selectedSprite!)!;
+        btn?.classList.add('selectedTile');
         this.clickAudio.play();
     }
 
@@ -113,15 +110,8 @@ export class MapEditor implements IRenderable {
     }
 
     public changeSprite(change:SpriteChanger):void {
-        this.selectedSpriteIdx = Clamp(this.selectedSpriteIdx+change, 0, this.loadedSprites.length);
-
-        const key:string = this.loadedSprites[this.selectedSpriteIdx];
-        const sprite:Sprite = Sprites[key as keyof typeof Sprites];
-        if (sprite.category === SpriteCategory.GameAsset) {
-            this.changeSprite(SpriteChanger.Next);
-            return;
-        };
-        this.selectedSprite = sprite;
+        this.selectedSpriteIdx = Clamp(this.selectedSpriteIdx+change, 0, this.sprites!.length);
+        this.selectedSprite = this.sprites![this.selectedSpriteIdx];
         
         this.setTileButtonAsActive();
     }
@@ -156,15 +146,21 @@ export class MapEditor implements IRenderable {
             offset.x -= this.game.mainCamera.position.x;
             offset.y += this.levelSize;
         }
-        ctx.save();
-            ctx.filter = 'opacity(0.5) contrast(1.3)';
-            BasicRendering.drawSprite(ctx, this.cursorPosition, this.selectedSprite, this.levelSize, this.levelSize);
-        ctx.restore();
-        const pos = Vector2.copy(this.cursorPosition);
-        pos.x -= (10*this.selectedSprite.name.length)/2;
-        pos.y += this.levelSize / 1.5;
-
-        BasicRendering.drawText(ctx,this.selectedSprite.name,pos,200,'#fff',"10px 'Press Start 2P', cursive");
-        BasicRendering.drawSprite(ctx, this.cursorPosition, Sprites.DashedBG, this.levelSize, this.levelSize);
+        this.drawSelectedSprite(ctx);
+    }
+    
+    private drawSelectedSprite(ctx:CanvasRenderingContext2D):void {
+        if(this.selectedSprite) {
+            ctx.save();
+                ctx.filter = 'opacity(0.5) contrast(1.3)';
+                BasicRendering.drawSprite(ctx, this.cursorPosition, this.selectedSprite!, this.levelSize, this.levelSize);
+            ctx.restore();
+            const pos = Vector2.copy(this.cursorPosition);
+            pos.x -= (10*this.selectedSprite!.name.length)/2;
+            pos.y += this.levelSize / 1.5;
+    
+            BasicRendering.drawText(ctx,this.selectedSprite!.name,pos,200,'#fff',"10px 'Press Start 2P', cursive");
+            BasicRendering.drawSprite(ctx, this.cursorPosition, Sprites.DashedBG, this.levelSize, this.levelSize);
+        }
     }
 }

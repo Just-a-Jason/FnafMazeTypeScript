@@ -7,6 +7,7 @@ import { Camera } from "../Classes/Camera";
 import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
+import { UISelectionMenu } from "../Classes/UISelectionMenu";
 
 window.addEventListener('load', async () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
@@ -22,7 +23,9 @@ window.addEventListener('load', async () => {
 
     const game: Game = new Game(canvas.width, canvas.height);
     game.UI = new UI(game);
-
+    game.mapEditor.setSprites(sprites);
+    
+    const ui: UISelectionMenu = new UISelectionMenu(sprites);
     
     canvas.addEventListener('mousemove', (e:MouseEvent) => {
         if (mouseControllMode === ControllerMode.Mouse) {
@@ -96,10 +99,6 @@ window.addEventListener('load', async () => {
 
     // Handle mouse zooming
     canvas.addEventListener('wheel', (e:WheelEvent) => {
-        // Main camera memory pointer (ref. reference)
-        const mainCamera:Camera = game.mainCamera;
-        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
-        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
     });
 
     function detectControllerPress() {

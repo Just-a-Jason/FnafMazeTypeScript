@@ -12,23 +12,23 @@ export class UISelectionMenu implements IDebuggable {
     public static Instance:Nullable<UISelectionMenu> = null; 
     
     public constructor(public sprites:Array<Sprite>) {
-        this.Init();
+        this.init();
     }
     
-    private Init():void {
+    private init():void {
         this.menu = document.querySelector('.editModeUI');
 
-        this.ReloadMenu();
+        this.reloadMenu();
         if (!UISelectionMenu.Instance) UISelectionMenu.Instance = this;
         MapEditor.Instance?.setTileButtonAsActive();
         document.querySelector('.categoryList')?.classList.add('categoryListActive');
     }
     
     
-    public ReloadMenu():void {
+    public reloadMenu():void {
         if (this.menu) {
             
-            this.Categorize();
+            this.categorize();
             const scrollView:Element = this.menu.querySelector('.scroll-view')!;
             this.selectableButtons.clear();
 
@@ -69,7 +69,7 @@ export class UISelectionMenu implements IDebuggable {
         else throw new Error('The menu object is not defined.');
     }
     
-    private Categorize(){
+    private categorize(){
         const map:Map<string, Array<Sprite>> = new Map<string, Array<Sprite>>();
         this.categorisedMenuItems.clear();
 
@@ -81,6 +81,7 @@ export class UISelectionMenu implements IDebuggable {
         }
         
         this.categorisedMenuItems = map;
+        console.log(map);
     }
 
     public Log(): void {

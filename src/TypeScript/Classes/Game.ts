@@ -19,8 +19,6 @@ export class Game {
     public DeltaTime:number = 1;
     public fps = 0;
 
-    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.getSpritesArray());
-    
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
     public addObject(obj:IRenderable) {
