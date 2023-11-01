@@ -55,16 +55,16 @@ window.addEventListener('load', async () => {
         if (e.button === 2)  mapEditor.removeSprite();
     });
 
-    function GameLoop():void {
+    function gameLoop():void {
         game.render(context2d);
-        requestAnimationFrame(GameLoop);
+        requestAnimationFrame(gameLoop);
     }
     
     let mouseControllMode:ControllerMode = ControllerMode.Mouse;
     let detectControllerLoop:any; 
     
     window.addEventListener('gamepadconnected', (e:GamepadEvent) => {
-        detectControllerLoop = setInterval(DetectControllerPress, 100);
+        detectControllerLoop = setInterval(detectControllerPress, 100);
         console.info(`Gamepad connected. ID(${e.gamepad.id})`);
         mouseControllMode = ControllerMode.Controller;
     });
@@ -97,12 +97,12 @@ window.addEventListener('load', async () => {
     // Handle mouse zooming
     canvas.addEventListener('wheel', (e:WheelEvent) => {
         // Main camera memory pointer (ref. reference)
-        // const mainCamera:Camera = game.mainCamera;
-        // const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
-        // mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
+        const mainCamera:Camera = game.mainCamera;
+        const scrollDelta:number = (-e.deltaY*game.DeltaTime)/100; 
+        mainCamera.cameraZoomAmount = Clamp(mainCamera.cameraZoomAmount + scrollDelta, 0.5, mainCamera.cameraZoomAmountMax);
     });
 
-    function DetectControllerPress() {
+    function detectControllerPress() {
             const gamepad = navigator.getGamepads()[0];
         if (gamepad) {
             if (gamepad.buttons[7].pressed && gamepad.buttons[1].pressed) {
@@ -153,5 +153,5 @@ window.addEventListener('load', async () => {
         }
     }
 
-    GameLoop();
+    gameLoop();
 });
