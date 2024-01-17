@@ -8,6 +8,7 @@ import { Game } from "../Classes/Game";
 import { UI } from "../Classes/UI";
 import { Clamp } from "./utils";
 import { UISelectionMenu } from "../Classes/UISelectionMenu";
+import MousePointer from "../Classes/MousePointer";
 
 window.addEventListener('load', async () => {
     const music:HTMLAudioElement = new Audio("Sounds/Music/music.ogg");
@@ -97,8 +98,15 @@ window.addEventListener('load', async () => {
         }
     });
 
+    const mousePointer = new MousePointer();
+    game.addObject(mousePointer);
+
     // Handle mouse zooming
     canvas.addEventListener('wheel', (e:WheelEvent) => {
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        mousePointer.setPosition(e);
     });
 
     function detectControllerPress() {
