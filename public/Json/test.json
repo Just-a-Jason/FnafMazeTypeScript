@@ -195,6 +195,55 @@
         "path": "Sprites/Characters/Foxy.webp",
         "width": 70,
         "height": 70
+      },
+      {
+        "name": "Nightmare Foxy",
+        "category": 0,
+        "path": "Sprites/Characters/NightmareFoxy.webp",
+        "width": 70,
+        "height": 70
+      },
+      {
+        "name": "Golden Freddy",
+        "category": 0,
+        "path": "Sprites/Characters/GoldenFreddy.webp",
+        "width": 70,
+        "height": 70
+      },
+      {
+        "name": "Springtrap",
+        "category": 0,
+        "path": "Sprites/Characters/Springtrap.webp",
+        "width": 70,
+        "height": 70
+      },
+      {
+        "name": "Bonnie",
+        "category": 0,
+        "path": "Sprites/Characters/Bonnie.webp",
+        "width": 70,
+        "height": 70
+      },
+      {
+        "name": "Cupcake",
+        "category": 0,
+        "path": "Sprites/Characters/Cupcake.webp",
+        "width": 50,
+        "height": 50
+      },
+      {
+        "name": "William",
+        "category": 0,
+        "path": "Sprites/Characters/William.webp",
+        "width": 70,
+        "height": 70
+      },
+      {
+        "name": "Freddy",
+        "category": 0,
+        "path": "Sprites/Characters/Freddy.webp",
+        "width": 70,
+        "height": 70
       }
     ]
   }

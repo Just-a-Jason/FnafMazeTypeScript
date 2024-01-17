@@ -1,5 +1,5 @@
-import { IMovable } from "../Interfaces/IMovable";
 import { IRenderable } from "../Interfaces/IRenderable";
+import { IMovable } from "../Interfaces/IMovable";
 import { BasicRendering } from "./BasicRendering";
 import { Vector2 } from "../Structs/Vector2";
 import { Game } from "./Game";
@@ -48,20 +48,8 @@ export class Camera implements IMovable, IRenderable {
     public followTarget(target:IMovable):void {
     }
     
-    public FollowPosition() {
-        if (!this.targetPosition) return;
-        const speed:number = this.game.DeltaTime * this.speed;
-
-        if(this.position.y < this.targetPosition.y) 
-            this.position.y += speed;
-        
-        if (this.position.y > this.targetPosition.y) 
-            this.position.y -= speed;
-        
-        if (this.position.x < this.targetPosition.x)
-            this.position.x += speed;
-
-        if (this.position.x > this.targetPosition.x)
-            this.position.x -= speed;
+    public followPosition() {
+       this.position.x = this.targetPosition.x;
+       this.position.y = this.targetPosition.y;
     }
 }

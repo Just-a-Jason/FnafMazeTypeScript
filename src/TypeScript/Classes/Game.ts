@@ -2,11 +2,11 @@ import { IRenderable } from "../Interfaces/IRenderable";
 import { ICollideable } from "../Interfaces/ICollideable";
 import { CharacterBase } from "./CharaterBase";
 import { LevelSize } from "../Enums/LevelSize";
+import { UISelectionMenu } from "./UISelectionMenu";
+import { Vector2 } from "../Structs/Vector2";
 import { GameObject } from "./GameObject";
 import { MapEditor } from "./MapEditor";
-import { Vector2 } from "../Structs/Vector2";
 import { Camera } from "./Camera";
-import { UISelectionMenu } from "./UISelectionMenu";
 
 export class Game {
     public mapEditor: MapEditor = new MapEditor(this, LevelSize.Small);
@@ -19,8 +19,6 @@ export class Game {
     public DeltaTime:number = 1;
     public fps = 0;
 
-    public uiSelectionMenu: UISelectionMenu = new UISelectionMenu(this.mapEditor.getSpritesArray());
-    
     public constructor(public canvasWidth:number, public canvasHeight: number) { }
     
     public addObject(obj:IRenderable) {
@@ -29,7 +27,7 @@ export class Game {
 
     public render(ctx:CanvasRenderingContext2D):void  {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-        this.mainCamera.FollowPosition();
+        this.mainCamera.followPosition();
         this.mapEditor.render(ctx);
         this.processAI();
 

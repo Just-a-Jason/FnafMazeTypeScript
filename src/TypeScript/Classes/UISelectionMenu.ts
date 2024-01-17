@@ -12,37 +12,37 @@ export class UISelectionMenu implements IDebuggable {
     public static Instance:Nullable<UISelectionMenu> = null; 
     
     public constructor(public sprites:Array<Sprite>) {
-        this.Init();
+        this.init();
     }
     
-    private Init():void {
+    private init():void {
         this.menu = document.querySelector('.editModeUI');
 
-        this.ReloadMenu();
+        this.reloadMenu();
         if (!UISelectionMenu.Instance) UISelectionMenu.Instance = this;
         MapEditor.Instance?.setTileButtonAsActive();
         document.querySelector('.categoryList')?.classList.add('categoryListActive');
     }
     
     
-    public ReloadMenu():void {
+    public reloadMenu():void {
         if (this.menu) {
             
-            this.Categorize();
+            this.categorize();
             const scrollView:Element = this.menu.querySelector('.scroll-view')!;
             this.selectableButtons.clear();
 
             scrollView.innerHTML = '';
             
             for (let category of this.categorisedMenuItems.keys()) {
-                const ctgb:IUICategoryButton = UIElementFactory.CreateCategoryButton(category);
+                const ctgb:IUICategoryButton = UIElementFactory.createCategoryButton(category);
                 scrollView.appendChild(ctgb.object);
                 scrollView.appendChild(ctgb.itemList);
 
                 const sprites:Array<Sprite> = this.categorisedMenuItems.get(category)!;
 
                 for (const sprite of sprites) {
-                    const tsb:UISelectableButton = UIElementFactory.CreateTileSelectableButton(sprite);
+                    const tsb:UISelectableButton = UIElementFactory.createTileSelectableButton(sprite);
 
                     tsb.addEventListener('click', (e:MouseEvent) => {
                         // Small performance trick
@@ -58,7 +58,6 @@ export class UISelectionMenu implements IDebuggable {
                         MapEditor.Instance?.setSprite(spriteName);
 
                         target.classList.add('selectedTile');
-
                     });
 
                     this.selectableButtons.set(sprite, tsb);
@@ -70,7 +69,7 @@ export class UISelectionMenu implements IDebuggable {
         else throw new Error('The menu object is not defined.');
     }
     
-    private Categorize(){
+    private categorize(){
         const map:Map<string, Array<Sprite>> = new Map<string, Array<Sprite>>();
         this.categorisedMenuItems.clear();
 
@@ -82,6 +81,7 @@ export class UISelectionMenu implements IDebuggable {
         }
         
         this.categorisedMenuItems = map;
+        console.log(map);
     }
 
     public Log(): void {
